@@ -18,9 +18,12 @@ public class Timer extends AppCompatActivity {
 
     private CountDownTimer timer;
     private boolean isTimerRunning = false;
-    private long timeRemainingInMillis = 0;
-    private final long WORK_DURATION = 25 * 60 * 1000; // 25 minutes in milliseconds
-    private final long BREAK_DURATION = 5 * 60 * 1000; // 5 minutes in milliseconds
+    private long timeRemaining = 0;
+    private final long WORK_DURATION = 25 * 60 * 1000;
+    private final long BREAK_DURATION = 5 * 60 * 1000;
+    private final long LONG_BREAK_DURATION = 15 * 60;
+    private final int WORK_ROUNDS = 4;
+    private int workRoundCount = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +40,11 @@ public class Timer extends AppCompatActivity {
                 if (isTimerRunning) {
                     pauseTimer();
                 } else {
-                    startTimer(timeRemainingInMillis > 0 ? timeRemainingInMillis : WORK_DURATION);
+                    if (timeRemaining <= 0) {
+                        startTimer(WORK_DURATION);
+                    } else {
+                        startTimer(timeRemaining);
+                    }
                 }
             }
         });
@@ -50,36 +57,41 @@ public class Timer extends AppCompatActivity {
         });
     }
 
-    private void startTimer(long durationInMillis) {
-        timer = new CountDownTimer(durationInMillis, 1000) {
+    private void startTimer(long duration) {
+        timer = new CountDownTimer(duration, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                timeRemainingInMillis = millisUntilFinished;
+                timeRemaining = millisUntilFinished;
                 updateTimerText(millisUntilFinished);
             }
 
             @Override
             public void onFinish() {
-                // Handle timer completion and switch between work and break sessions
                 if (isTimerRunning) {
-                    // Timer just finished the work session, start the break
-                    startTimer(BREAK_DURATION);
+                    if (workRoundCount < WORK_ROUNDS) {
+                        workRoundCount++;
+                        startTimer(BREAK_DURATION);
+                    } else {
+                        workRoundCount = 0;
+                        startTimer(WORK_DURATION);
+                    }
                 } else {
-                    // Timer just finished the break session, start the work
                     startTimer(WORK_DURATION);
                 }
             }
         }.start();
 
         isTimerRunning = true;
-        startButton.setText("Pause");
+        startButton.setText("PAUSE");
         resetButton.setVisibility(View.INVISIBLE);
     }
 
     private void pauseTimer() {
         timer.cancel();
         isTimerRunning = false;
-        startButton.setText("Start");
+        timeRemaining = timeRemaining > 0 ? timeRemaining : WORK_DURATION;
+        updateTimerText(timeRemaining);
+        startButton.setText("START");
         resetButton.setVisibility(View.VISIBLE);
     }
 
@@ -88,10 +100,11 @@ public class Timer extends AppCompatActivity {
             timer.cancel();
         }
         isTimerRunning = false;
-        timeRemainingInMillis = 0;
+        timeRemaining = 0;
         updateTimerText(WORK_DURATION);
-        startButton.setText("Start");
+        startButton.setText("START");
         resetButton.setVisibility(View.INVISIBLE);
+        workRoundCount = 0;
     }
 
     private void updateTimerText(long millisUntilFinished) {
