@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".TaskListPage">
+
+    <TextView
+        android:id="@+id/page_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="66dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="66dp"
+        android:gravity="center"
+        android:text="Task List"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <EditText
+        android:id="@+id/task_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="92dp"
+        android:hint="Task Name"
+        android:inputType="text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/log_out"
+        app:layout_constraintStart_toEndOf="@+id/add_task" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/add_task"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="Add"
+        app:layout_constraintBottom_toTopOf="@+id/timer"
+        app:layout_constraintStart_toStartOf="@+id/timer" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="Timer"
+        app:layout_constraintEnd_toStartOf="@+id/task_list_button"
+        app:layout_constraintTop_toTopOf="@+id/task_list_button" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/task_list_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="9dp"
+        android:text="Task List"
+        app:layout_constraintEnd_toStartOf="@+id/log_out"
+        app:layout_constraintTop_toBottomOf="@+id/task_name" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/log_out"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="19dp"
+        android:text="Log Out"
+        app:layout_constraintBaseline_toBaselineOf="@+id/task_list_button"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/task1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/page_title"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="18dp"
+        android:text="1. "
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/page_title" />
+
+    <TextView
+        android:id="@+id/task2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/task1"
+        android:layout_marginTop="17dp"
+        android:text="2. "
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/task1"
+        app:layout_constraintTop_toBottomOf="@+id/task1" />
+
+    <TextView
+        android:id="@+id/task3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/task2"
+        android:layout_marginTop="17dp"
+        android:text="3. "
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/task2"
+        app:layout_constraintTop_toBottomOf="@+id/task2" />
+
+    <TextView
+        android:id="@+id/task4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/task3"
+        android:layout_marginTop="17dp"
+        android:text="4. "
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/task3"
+        app:layout_constraintTop_toBottomOf="@+id/task3" />
+
+    <TextView
+        android:id="@+id/task5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/task4"
+        android:layout_marginTop="17dp"
+        android:text="5. "
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/task4"
+        app:layout_constraintTop_toBottomOf="@+id/task4" />
+
+    <TextView
+        android:id="@+id/task6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/task5"
+        android:layout_marginTop="17dp"
+        android:text="6. "
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/task5"
+        app:layout_constraintTop_toBottomOf="@+id/task5" />
+
+    <TextView
+        android:id="@+id/task7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/task6"
+        android:layout_marginTop="17dp"
+        android:text="7. "
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/task6"
+        app:layout_constraintTop_toBottomOf="@+id/task6" />
+
+    <TextView
+        android:id="@+id/task8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/task7"
+        android:layout_marginTop="17dp"
+        android:text="8. "
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/task7"
+        app:layout_constraintTop_toBottomOf="@+id/task7" />
+
+    <TextView
+        android:id="@+id/task9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/task8"
+        android:layout_marginTop="17dp"
+        android:text="9. "
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/task8"
+        app:layout_constraintTop_toBottomOf="@+id/task8" />
+
+    <TextView
+        android:id="@+id/task10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/task9"
+        android:layout_marginTop="17dp"
+        android:text="10. "
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/task9"
+        app:layout_constraintTop_toBottomOf="@+id/task9" />
+
+    <ImageButton
+        android:id="@+id/close1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="33dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/page_title"
+        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
+    <ImageButton
+        android:id="@+id/close2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        app:layout_constraintStart_toStartOf="@+id/close1"
+        app:layout_constraintTop_toTopOf="@+id/close1"
+        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
+    <ImageButton
+        android:id="@+id/close3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        app:layout_constraintStart_toStartOf="@+id/close2"
+        app:layout_constraintTop_toTopOf="@+id/close2"
+        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
+    <ImageButton
+        android:id="@+id/close4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        app:layout_constraintStart_toStartOf="@+id/close3"
+        app:layout_constraintTop_toTopOf="@+id/close3"
+        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
+    <ImageButton
+        android:id="@+id/close5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        app:layout_constraintStart_toStartOf="@+id/close4"
+        app:layout_constraintTop_toTopOf="@+id/close4"
+        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
+    <ImageButton
+        android:id="@+id/close6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        app:layout_constraintStart_toStartOf="@+id/close5"
+        app:layout_constraintTop_toTopOf="@+id/close5"
+        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
+    <ImageButton
+        android:id="@+id/close7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        app:layout_constraintStart_toStartOf="@+id/close6"
+        app:layout_constraintTop_toTopOf="@+id/close6"
+        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
+    <ImageButton
+        android:id="@+id/close8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        app:layout_constraintStart_toStartOf="@+id/close7"
+        app:layout_constraintTop_toTopOf="@+id/close7"
+        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
+    <ImageButton
+        android:id="@+id/close9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        app:layout_constraintStart_toStartOf="@+id/close8"
+        app:layout_constraintTop_toTopOf="@+id/close8"
+        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
+    <ImageButton
+        android:id="@+id/close10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        app:layout_constraintStart_toStartOf="@+id/close9"
+        app:layout_constraintTop_toTopOf="@+id/close9"
+        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.content.Intent;
 
 import com.google.android.material.button.MaterialButton;
 
@@ -21,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         signinbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Open UserRegUI
+                startActivity(new Intent(MainActivity.this, TaskListPage.class));
             }
         });
 
