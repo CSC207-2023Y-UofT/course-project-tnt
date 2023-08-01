@@ -12,8 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Tester"
         tools:targetApi="31">
-        <activity
-            android:name=".MainActivity"
+        <activity android:name=".RegisterUser" />
+        <activity android:name=".SigninUser" />
+        <activity android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
