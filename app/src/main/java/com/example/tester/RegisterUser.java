@@ -40,12 +40,14 @@ public class RegisterUser extends AppCompatActivity {
                     if (password.equals(repassword)){
                         Boolean usercheckResult = myDB.checkUsername(username);
                         if (!usercheckResult) {
-                            Boolean regResult = myDB.insertData(myDB, username, password);
+                            boolean regResult = myDB.addUser(myDB, username, password);
                             if (regResult){
-//                                TODO
                                 Toast.makeText(RegisterUser.this, "Registration Successful.", Toast.LENGTH_SHORT).show();
-//                                Intent intent = new Intent(getApplicationContext(), HomePageUI.class);
-//                                startActivity(intent);
+                                registerUsername.setText("");
+                                registerPassword.setText("");
+                                retypePassword.setText("");
+                                Intent intent = new Intent(getApplicationContext(), HomePageUI.class);
+                                startActivity(intent);
                             }
                             else {
                                 Toast.makeText(RegisterUser.this, "Registration Failed.", Toast.LENGTH_SHORT).show();
