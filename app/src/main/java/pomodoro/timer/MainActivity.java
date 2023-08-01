@@ -1,5 +1,6 @@
 package pomodoro.timer;
 
+
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -7,23 +8,17 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.myapplication.R;
-
-public class Timer extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     private TextView timerTextView;
-    private Button startButton;
+    private Button startPauseButton;
     private Button resetButton;
-
     private CountDownTimer timer;
-    private boolean isTimerRunning = false;
-    private long timeRemaining = 0;
-    private final long WORK_DURATION = 25 * 60 * 1000;
-    private final long BREAK_DURATION = 5 * 60 * 1000;
-    private final long LONG_BREAK_DURATION = 15 * 60;
-    private final int WORK_ROUNDS = 4;
-    private int workRoundCount = 0;
+    private boolean isTimerRunning;
+    private long timeLeftInMillis;
+    private static final long WORK_DURATION = 25 * 60 * 1000;
+    private static final long BREAK_DURATION = 5 * 60 * 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,20 +26,16 @@ public class Timer extends AppCompatActivity {
         setContentView(R.layout.timer_page);
 
         timerTextView = findViewById(R.id.timerTextView);
-        startButton = findViewById(R.id.startButton);
+        startPauseButton = findViewById(R.id.startPauseButton);
         resetButton = findViewById(R.id.resetButton);
 
-        startButton.setOnClickListener(new View.OnClickListener() {
+        startPauseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isTimerRunning) {
                     pauseTimer();
                 } else {
-                    if (timeRemaining <= 0) {
-                        startTimer(WORK_DURATION);
-                    } else {
-                        startTimer(timeRemaining);
-                    }
+                    startTimer(timeLeftInMillis > 0 ? timeLeftInMillis : WORK_DURATION);
                 }
             }
         });
@@ -61,55 +52,55 @@ public class Timer extends AppCompatActivity {
         timer = new CountDownTimer(duration, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                timeRemaining = millisUntilFinished;
+                timeLeftInMillis = millisUntilFinished;
                 updateTimerText(millisUntilFinished);
             }
 
             @Override
             public void onFinish() {
-                if (isTimerRunning) {
-                    if (workRoundCount < WORK_ROUNDS) {
-                        workRoundCount++;
-                        startTimer(BREAK_DURATION);
-                    } else {
-                        workRoundCount = 0;
-                        startTimer(WORK_DURATION);
-                    }
+                if (duration == WORK_DURATION) {
+                    updateTimerText(BREAK_DURATION);
+                    startTimer(BREAK_DURATION);
                 } else {
-                    startTimer(WORK_DURATION);
+                    updateTimerText(WORK_DURATION);
+                    resetButton.setVisibility(View.VISIBLE);
+                    startPauseButton.setText("Start");
                 }
             }
         }.start();
 
         isTimerRunning = true;
-        startButton.setText("PAUSE");
-        resetButton.setVisibility(View.INVISIBLE);
+        startPauseButton.setText("Pause");
+        resetButton.setVisibility(View.GONE);
     }
 
     private void pauseTimer() {
         timer.cancel();
         isTimerRunning = false;
-        timeRemaining = timeRemaining > 0 ? timeRemaining : WORK_DURATION;
-        updateTimerText(timeRemaining);
-        startButton.setText("START");
+        startPauseButton.setText("Start");
         resetButton.setVisibility(View.VISIBLE);
     }
 
     private void resetTimer() {
-        if (timer != null) {
-            timer.cancel();
-        }
-        isTimerRunning = false;
-        timeRemaining = 0;
+        timer.cancel();
+        timeLeftInMillis = WORK_DURATION;
         updateTimerText(WORK_DURATION);
-        startButton.setText("START");
-        resetButton.setVisibility(View.INVISIBLE);
-        workRoundCount = 0;
+        startPauseButton.setText("Start");
+        resetButton.setVisibility(View.GONE);
     }
 
     private void updateTimerText(long millisUntilFinished) {
         int minutes = (int) (millisUntilFinished / 1000) / 60;
         int seconds = (int) (millisUntilFinished / 1000) % 60;
-        timerTextView.setText(String.format("%02d:%02d", minutes, seconds));
+        String timeLeft = String.format("%02d:%02d", minutes, seconds);
+        timerTextView.setText(timeLeft);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (timer != null) {
+            timer.cancel();
+        }
     }
 }
