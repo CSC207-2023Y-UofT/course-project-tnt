@@ -1,25 +1,5 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
-    id 'java'
     id 'com.android.application' version '8.0.2' apply false
-}
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    implementation 'junit:junit:4.13.2'
-    testImplementation('org.junit.jupiter:junit-jupiter:5.6.0')
-}
-
-test {
-    useJUnitPlatform()
-    testLogging {
-        events "passed", "skipped", "failed"
-    }
-}
-
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    id 'com.android.library' version '8.0.2' apply false
 }
