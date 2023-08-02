@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="#F3ECE7"
+    >
+
+    <ImageView
+        android:src="@drawable/pomodoro_logo"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/username_signin"
+        android:hint="Username"
+        android:layout_margin="10dp"
+        android:padding="20dp"
+        android:autofillHints="Username"
+        android:inputType="text"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/password_signin"
+        android:layout_below="@+id/username_signin"
+        android:hint="Password"
+        android:layout_margin="10dp"
+        android:padding="20dp"
+        android:autofillHints="Password"
+        android:inputType="textPassword" />
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/signin"
+        android:text="SIGN IN"
+        android:backgroundTint="@color/design_default_color_on_secondary"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_below="@+id/password_signin"
+        android:layout_margin="20dp"
+        android:textSize="20sp"
+        />
+
+</RelativeLayout>
