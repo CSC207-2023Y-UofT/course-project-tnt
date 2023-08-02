@@ -3,14 +3,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TimerFragment">
+    tools:context=".TimerFragment"
+    android:background="#F3ECE7">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Timer"
-        android:textSize="30dp"
-        android:layout_gravity="center"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/timerTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textSize="48sp"
+            android:text="25:00"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/startPauseButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/timerTextView"
+            android:layout_centerHorizontal="true"
+            android:text="Start" />
+
+        <Button
+            android:id="@+id/resetButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/startPauseButton"
+            android:layout_centerHorizontal="true"
+            android:text="Reset"
+            android:visibility="gone" />
+
+    </RelativeLayout>
 </FrameLayout>
