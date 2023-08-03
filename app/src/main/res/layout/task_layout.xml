@@ -21,7 +21,8 @@
             android:layout_centerHorizontal="true"
             android:paddingStart="8dp"
             android:buttonTint="#A2E4B8"
-            tools:text="Go to the market and bring vegetables immediately today."/>
+            tools:text="Go to the market and bring vegetables immediately today."
+            tools:ignore="RtlSymmetry,VisualLintButtonSize" />
 
     </RelativeLayout>
 

@@ -1,4 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="16dp"
@@ -13,18 +14,18 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:hint="@string/new_task"
         android:inputType="text"
-        android:autofillHints="@string/task_name" />
+        android:autofillHints="@string/task_name"
+        tools:ignore="VisualLintTextFieldSize" />
 
     <Button
         android:id="@+id/newTaskButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/newTaskText"
-        android:textSize="16sp"
         android:layout_alignParentEnd="true"
         android:background="@android:color/transparent"
         android:text="@string/save"
         android:textAllCaps="false"
-        android:textColor="@android:color/darker_gray" />
+        android:textSize="16sp" />
 
 </RelativeLayout>

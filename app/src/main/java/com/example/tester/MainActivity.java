@@ -5,9 +5,9 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.view.View;
 import net.penguincoders.doit.R;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -24,9 +24,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
 
     private DatabaseHandler db;
 
-    private RecyclerView tasksRecyclerView;
     private ToDoAdapter tasksAdapter;
-    private FloatingActionButton fab;
 
     private List<ToDoModel> taskList;
 
@@ -39,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
         db = new DatabaseHandler(this);
         db.openDatabase();
 
-        tasksRecyclerView = findViewById(R.id.tasksRecyclerView);
+        RecyclerView tasksRecyclerView = findViewById(R.id.tasksRecyclerView);
         tasksRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         tasksAdapter = new ToDoAdapter(db,MainActivity.this);
         tasksRecyclerView.setAdapter(tasksAdapter);
@@ -48,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
                 ItemTouchHelper(new RecyclerItemTouchHelper(tasksAdapter));
         itemTouchHelper.attachToRecyclerView(tasksRecyclerView);
 
-        fab = findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
 
         taskList = db.getAllTasks();
         Collections.reverse(taskList);
@@ -58,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
         fab.setOnClickListener(v -> AddTaskUseCase.newInstance().show(getSupportFragmentManager(), AddTaskUseCase.TAG));
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     public void handleDialogClose(DialogInterface dialog){
         taskList = db.getAllTasks();
