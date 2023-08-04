@@ -36,6 +36,8 @@ android {
 }
 
 dependencies {
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1@aar'
+    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.5.1@aar'
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.5.0'
