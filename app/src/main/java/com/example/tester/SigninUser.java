@@ -27,15 +27,10 @@ public class SigninUser extends AppCompatActivity {
             final String password = String.valueOf(signinPassword.getText());
 
             try {
-                signinValidation.validateSigninFields(username, password);
-                boolean result = userRepo.checkPassword(username, password);
-                if (result) {
+                signinValidation.validateSignin(userRepo, username, password);
                     Toast.makeText(SigninUser.this, "Sign-in Successful.", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getApplicationContext(), HomePageUI.class);
                     startActivity(intent);
-                } else {
-                    Toast.makeText(SigninUser.this, "Invalid credentials.", Toast.LENGTH_SHORT).show();
-                }
             } catch (ValidationException e) {
                 Toast.makeText(SigninUser.this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }

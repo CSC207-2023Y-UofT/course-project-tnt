@@ -7,7 +7,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class DatabaseHelper extends SQLiteOpenHelper implements UserRepo{
+public class DatabaseHelper extends SQLiteOpenHelper implements UserRepo {
 
     public static final String DATABASE_NAME="ep";
     public static final String TABLE_NAME= "users";
@@ -40,9 +40,9 @@ public class DatabaseHelper extends SQLiteOpenHelper implements UserRepo{
     }
 
     @Override
-    public boolean addUser(DatabaseHelper dbHelper, String username, String password){
+    public boolean addUser(UserRepo dbHelper, String username, String password){
 
-        SQLiteDatabase db= dbHelper.getWritableDatabase();
+        SQLiteDatabase db= ((DatabaseHelper) dbHelper).getWritableDatabase();
 
         ContentValues contentValues= new ContentValues();
         contentValues.put(USERNAME, username);

@@ -6,7 +6,7 @@ public class RegisterValidation {
     RegisterValidation() {
     }
 
-    public void validateRegister(DatabaseHelper myDB, String username, String password, String repassword) throws RegistrationException {
+    public void validateRegister(UserRepo myDB, String username, String password, String repassword) throws RegistrationException {
         if (username.equals("") || password.equals("") || repassword.equals("")) {
             throw new RegistrationException("Fill all the fields.");
         } else if (!password.equals(repassword)) {
