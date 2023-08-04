@@ -20,7 +20,7 @@
             android:minHeight="48dp"
             android:layout_centerHorizontal="true"
             android:paddingStart="8dp"
-            android:buttonTint="#A2E4B8"
+            android:buttonTint="#3E3E3E"
             tools:text="Go to the market and bring vegetables immediately today."
             tools:ignore="RtlSymmetry,VisualLintButtonSize" />
 

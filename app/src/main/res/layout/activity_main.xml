@@ -34,7 +34,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_margin="32dp"
-        android:backgroundTint="#A2E4B8"
+        android:backgroundTint="#3E3E3E"
         android:src="@drawable/ic_baseline_add_24" />
 
 </RelativeLayout>

@@ -15,11 +15,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.tester.Adapters.ToDoAdapter;
 import net.penguincoders.doit.R;
 
-public class RecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback {
+public class RemoveTaskUseCase extends ItemTouchHelper.SimpleCallback {
 
     private final ToDoAdapter adapter;
 
-    public RecyclerItemTouchHelper(ToDoAdapter adapter) {
+    public RemoveTaskUseCase(ToDoAdapter adapter) {
         super(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
         this.adapter = adapter;
     }

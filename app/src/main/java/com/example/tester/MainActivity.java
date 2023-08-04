@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
         tasksRecyclerView.setAdapter(tasksAdapter);
 
         ItemTouchHelper itemTouchHelper = new
-                ItemTouchHelper(new RecyclerItemTouchHelper(tasksAdapter));
+                ItemTouchHelper(new RemoveTaskUseCase(tasksAdapter));
         itemTouchHelper.attachToRecyclerView(tasksRecyclerView);
 
         FloatingActionButton fab = findViewById(R.id.fab);
