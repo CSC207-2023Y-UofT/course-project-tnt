@@ -8,47 +8,46 @@
     android:background="#F3ECE7"
     >
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/signin"
-        android:text="Welcome!"
-        android:textSize="35sp"
-        android:textStyle="bold"
-        android:layout_margin="50dp"
-        android:gravity="center"/>
-
     <ImageView
         android:src="@drawable/pomodoro_logo"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_below="@+id/signin"
         />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/signin_ui_btn"
-        android:layout_width="wrap_content"
+    <EditText
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/username_signin"
+        android:hint="Username"
+        android:layout_margin="10dp"
+        android:padding="20dp"
+        android:autofillHints="Username"
+        android:inputType="text"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:backgroundTint="@color/design_default_color_on_secondary"
-        android:gravity="center_horizontal"
-        android:text="SIGN IN"
-        android:textSize="30sp"
-        />
+        android:layout_centerVertical="true"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/password_signin"
+        android:layout_below="@+id/username_signin"
+        android:hint="Password"
+        android:layout_margin="10dp"
+        android:padding="20dp"
+        android:autofillHints="Password"
+        android:inputType="textPassword" />
 
     <com.google.android.material.button.MaterialButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/register_ui_btn"
-        android:text="REGISTER"
+        android:id="@+id/signin"
+        android:text="SIGN IN"
         android:backgroundTint="@color/design_default_color_on_secondary"
         android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:layout_below="@+id/signin_ui_btn"
+        android:layout_below="@+id/password_signin"
         android:layout_margin="20dp"
-        android:textSize="30sp"
+        android:textSize="20sp"
         />
-
 
 </RelativeLayout>
