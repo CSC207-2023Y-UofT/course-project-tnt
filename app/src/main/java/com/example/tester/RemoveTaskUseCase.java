@@ -12,14 +12,14 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.tester.Adapters.ToDoAdapter;
+import com.example.tester.Adapters.TaskAdapter;
 import net.penguincoders.doit.R;
 
 public class RemoveTaskUseCase extends ItemTouchHelper.SimpleCallback {
 
-    private final ToDoAdapter adapter;
+    private final TaskAdapter adapter;
 
-    public RemoveTaskUseCase(ToDoAdapter adapter) {
+    public RemoveTaskUseCase(TaskAdapter adapter) {
         super(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
         this.adapter = adapter;
     }

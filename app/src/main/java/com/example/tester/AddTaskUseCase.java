@@ -19,11 +19,12 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
-import com.example.tester.Model.ToDoModel;
+import com.example.tester.Model.TaskModel;
 import com.example.tester.Utils.DatabaseHandler;
 
 import java.util.Objects;
 import net.penguincoders.doit.R;
+// import com.example.tester.DatabaseHelper;
 
 public class AddTaskUseCase extends BottomSheetDialogFragment {
 
@@ -104,10 +105,12 @@ public class AddTaskUseCase extends BottomSheetDialogFragment {
                 db.updateTask(bundle.getInt("id"), text);
             }
             else {
-                ToDoModel task = new ToDoModel();
+                TaskModel task = new TaskModel();
                 task.setTask(text);
                 task.setStatus(0);
-                db.insertTask(task);
+                String username = DatabaseHelper.getUsername();
+                // db.insertTask(task);
+                db.insertTask(username, task);
             }
             dismiss();
         });

@@ -1,6 +1,6 @@
 package com.example.tester.Model;
 
-public class ToDoModel {
+public class TaskModel {
     private int id, status;
     private String task;
 

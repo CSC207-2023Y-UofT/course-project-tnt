@@ -12,8 +12,8 @@ import net.penguincoders.doit.R;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import com.example.tester.Adapters.ToDoAdapter;
-import com.example.tester.Model.ToDoModel;
+import com.example.tester.Adapters.TaskAdapter;
+import com.example.tester.Model.TaskModel;
 import com.example.tester.Utils.DatabaseHandler;
 
 import java.util.Collections;
@@ -24,9 +24,9 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
 
     private DatabaseHandler db;
 
-    private ToDoAdapter tasksAdapter;
+    private TaskAdapter tasksAdapter;
 
-    private List<ToDoModel> taskList;
+    private List<TaskModel> taskList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
 
         RecyclerView tasksRecyclerView = findViewById(R.id.tasksRecyclerView);
         tasksRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        tasksAdapter = new ToDoAdapter(db,MainActivity.this);
+        tasksAdapter = new TaskAdapter(db,MainActivity.this);
         tasksRecyclerView.setAdapter(tasksAdapter);
 
         ItemTouchHelper itemTouchHelper = new
