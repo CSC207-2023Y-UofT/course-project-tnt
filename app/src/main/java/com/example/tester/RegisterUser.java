@@ -2,6 +2,7 @@ package com.example.tester;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,9 +31,42 @@ public class RegisterUser extends AppCompatActivity {
 
             try {
                 registerUserValidation.validateRegister(myDB, username, password, repassword);
-                Toast.makeText(RegisterUser.this, "Registration Successful.", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(RegisterUser.this, "Registration Successful.", Toast.LENGTH_SHORT).show();
+                Prompt RegistrationPromptSuccess = new CustomPrompt(
+                        this,
+                        "Welcome!",
+                        "Registration Successful.",
+                        "SIGN-IN"
+                ) {
+                    @Override
+                    public void onButton1Clicked() {
+                        Intent intent = new Intent(getApplicationContext(), SigninUser.class);
+                        startActivity(intent);
+                    }
+                };
+                RegistrationPromptSuccess.show();
+
             } catch (RegistrationException e) {
-                Toast.makeText(RegisterUser.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(RegisterUser.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                Prompt RegistrationPromptFail = new CustomPrompt(
+                        this,
+                        "Failed",
+                        e.getMessage(),
+                        "TRY AGAIN",
+                        "SIGN-IN"
+                ) {
+                    @Override
+                    public void onButton1Clicked() {
+
+                    }
+
+                    @Override
+                    public void onButton2Clicked() {
+                        Intent intent = new Intent(getApplicationContext(), SigninUser.class);
+                        startActivity(intent);
+                    }
+                };
+                RegistrationPromptFail.show();
             }
         });
     }

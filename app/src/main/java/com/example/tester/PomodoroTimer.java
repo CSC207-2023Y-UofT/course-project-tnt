@@ -1,6 +1,7 @@
 package com.example.tester;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
@@ -26,6 +27,25 @@ public class PomodoroTimer extends Fragment {
     private int cycleCount = 0;
     private static final int MAX_CYCLES = 1;
     private VibratorHelper vibratorHelper;
+
+    Prompt TimerPrompt = new CustomPrompt(
+            getContext(),
+            "Good Job!",
+            "Do you want to continue working?",
+            "YES (START TIMER)",
+            "NO (RESET TIMER)"
+    ) {
+        @Override
+        public void onButton1Clicked() {
+            startTimer(timeLeftInMillis > 0 ? timeLeftInMillis : WORK_DURATION);
+        }
+
+        @Override
+        public void onButton2Clicked() {
+            resetTimer();
+        }
+    };
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -46,7 +66,7 @@ public class PomodoroTimer extends Fragment {
         resetButton.setOnClickListener(v -> resetTimer());
 
         vibratorHelper = new VibratorHelper(requireContext());
-
+        
         return rootView;
     }
 
@@ -69,7 +89,7 @@ public class PomodoroTimer extends Fragment {
                         updateTimerText(WORK_DURATION);
                         vibratorHelper.vibrate(1000);
                     } else {
-                        // TODO: insert prompt here
+                        TimerPrompt.show();
                     }
                 }
             }
