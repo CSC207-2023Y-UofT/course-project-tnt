@@ -9,6 +9,25 @@ feature, allowing users to work in focused 25-minute study sessions, followed by
 Additionally, it provides a task list feature for users to organize their tasks and mark them as
 completed.
 
+## Prerequisites and Setup
+Before you run the app, ensure you have met the following requirements:
+- Android Studio is installed on your computer
+### Clone the Repository
+To get started with the project, you need to clone the repository. Open your terminal and execute the following command:
+`git clone https://github.com/CSC207-2023Y-UofT/course-project-tnt.git`
+
+### Setting up in Android Studio
+1. Open Android Studio
+2. Click on `File` -> `Open`
+3. Navigate to the location where you cloned the repository and select the project's root folder.
+4. Android Studio will take a moment to sync and load the project.
+
+### Running the Project/App
+1. Once the project is loaded, you might need to wait for the Gradle sync to finish. This process will download the required dependencies.
+2. After the sync is complete, you can select a target device to run the app on. This could be an emulator or a physical device connected to your computer.
+3. Click on the green "Run" button (usually a play icon) in the top menu or use the shortcut `Shift + F10`.
+4. Android Studio will build the project and launch the app on the selected device.
+
 ## Features
 1. Pomodoro Timer
 - Study Session: The timer enables users to initiate a 25-minute study session to maintain focus and productivity.
