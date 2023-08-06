@@ -59,5 +59,5 @@ completed.
 
 ## Design patterns
 - Observer Pattern: This can be seen in the timer function, where when the timer finishes a break session, it automatically notifies the UI component via a prompt.
-- 
-
+- Factory Method: Prompt is an abstract class that serves as a "blueprint" for creating Android dialog prompts throughout the application. It has a constructor that takes parameters to initialize the prompt's properties, such as the title, dialog, names of the buttons and their functionalities. The CustomPrompt class, which extends Prompt, acts as a "creator/initializer" that creates instances of CustomPrompt based on the parameters passed to its constructors. Then, CustomPrompt would get called throughout the app with specific parameters according to each use case.
+- Template Method: The Prompt abstract class defines a template method show() that provides a concrete algorithm for displaying the dialog prompt, while leaving specific actions to be taken on button clicks (onButton1Clicked() and onButton2Clicked()) left abstract, allowing subclasses to provide their own implementations.
