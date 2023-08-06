@@ -23,8 +23,9 @@ completed.
 - User Login: Registered users can log in securely to access their task list.
 - User Logout: User is brought back to the main page, where they are shown the options to either sign in or register.
 4. Prompts
-- Timer Continuation Prompt: The user can choose to continue the study session without a break, making the app flexible to individual preferences.
-- User Signin Registration Prompt: Prompt displays authentication errors when user attempts to signin or register, providing guidance on how the user can successfully access the app content.
+- User Sign-in and Registration: Prompt displays authentication updates, such as errors when user attempts to signin or register, providing guidance on how the user can successfully access the app content.
+- Pomodoro Session Updates: Using the prompts, the user can choose to continue the study session without a break, making the app flexible to individual preferences.
+
 
 
 ## Note on SOLID and CA
@@ -47,6 +48,14 @@ completed.
 - LSP: It doesn’t involve inheritance or polymorphism so it doesn’t demonstrate LSP.
 - ISP: There is no code being forced to depend on methods it does not use.
 - DIP: High-level modules in PomodoroTimer have no imports from low-level modules.
+- 
+
+### Prompt:
+- SRP: The Prompt class adheres to the SRP as it focuses on a single responsibility: managing the presentation of prompt dialogs and avoids taking on additional responsibilities.
+- OCP: The Prompt class adheres to the OCP as it is designed to be extended by subclasses for creating specific prompt dialogs with custom string parameters and button click behaviours (CustomPrompt). The Prompt class is closed to modifications since its main structure is fixed. New prompts can be added without changing the existing code
+- LSP: The Prompt class adheres to the LSP as a subclass of Prompt should not introduce any issues when it is substituted as Prompt. A subclass of Prompt (CustomPrompt) only provides concrete implementations for button click events, so it can be used like any other Prompt.
+- ISP: Not applicable as Prompt is an abstract class, not an interface
+- DIP: The Prompt class adheres to DIP as it accepts a Context object via its constructor, which allows the Prompt class to depend on abstractions rather than concrete implementations
 
 ## Design patterns
 - Observer Pattern: This can be seen in the timer function, where when the timer finishes a break session, it automatically notifies the UI component via a prompt.
