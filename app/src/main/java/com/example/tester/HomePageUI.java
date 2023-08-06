@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -14,6 +15,11 @@ import com.google.android.material.button.MaterialButton;
 
 public class HomePageUI extends AppCompatActivity {
 
+    @Override
+    public void onBackPressed() {
+
+    }
+
     HomepageBinding binding;
 
     @Override
@@ -22,17 +28,18 @@ public class HomePageUI extends AppCompatActivity {
         binding = HomepageBinding.inflate(getLayoutInflater());
 //        setContentView(R.layout.homepage);
         setContentView(binding.getRoot());
-        replaceFragment(new TimerFragment());
+        replaceFragment(new PomodoroTimer());
 
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             int itemID = item.getItemId();
 
             if (itemID == R.id.timer) {
-                replaceFragment(new TimerFragment());
+                replaceFragment(new PomodoroTimer());
             } else if (itemID == R.id.tasks) {
                 replaceFragment(new TaskListFragment());
             } else if (itemID == R.id.logout) {
-                replaceFragment(new LogOutFragment());
+                Intent intent = new Intent(HomePageUI.this, MainActivity.class);
+                startActivity(intent);
             }
 
             return true;
