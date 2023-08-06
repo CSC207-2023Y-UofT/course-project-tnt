@@ -3,8 +3,6 @@ package com.example.tester;
 import android.content.Context;
 import android.content.DialogInterface;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 
 public abstract class Prompt {
     protected Context context;

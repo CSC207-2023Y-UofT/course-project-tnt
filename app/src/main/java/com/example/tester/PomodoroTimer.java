@@ -1,6 +1,7 @@
 package com.example.tester;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
@@ -42,6 +43,7 @@ public class PomodoroTimer extends Fragment {
         }
     };
 
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -60,7 +62,6 @@ public class PomodoroTimer extends Fragment {
 
         vibratorHelper = new VibratorHelper(requireContext());
 
-
         return rootView;
     }
 
@@ -77,8 +78,7 @@ public class PomodoroTimer extends Fragment {
                 if (duration == WORK_DURATION) {
                     startTimer(BREAK_DURATION);
                 } else {
-                    TimerPrompt.show();
-                    startTimer(WORK_DURATION);
+
                 }
             }
         }.start();
