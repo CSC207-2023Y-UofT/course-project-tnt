@@ -31,6 +31,7 @@ public class RegisterUser extends AppCompatActivity {
             try {
                 registerUserValidation.validateRegister(myDB, username, password, repassword);
                 Toast.makeText(RegisterUser.this, "Registration Successful.", Toast.LENGTH_SHORT).show();
+                DatabaseHelper.getUsername = username;
             } catch (RegistrationException e) {
                 Toast.makeText(RegisterUser.this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
