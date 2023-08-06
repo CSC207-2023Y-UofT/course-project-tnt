@@ -67,7 +67,6 @@ To get started with the project, you need to clone the repository. Open your ter
 - LSP: It doesn’t involve inheritance or polymorphism so it doesn’t demonstrate LSP.
 - ISP: There is no code being forced to depend on methods it does not use.
 - DIP: High-level modules in PomodoroTimer have no imports from low-level modules.
-- 
 
 ### Prompt:
 - SRP: The Prompt class adheres to the SRP as it focuses on a single responsibility: managing the presentation of prompt dialogs and avoids taking on additional responsibilities.
