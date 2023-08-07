@@ -14,7 +14,6 @@ public class DatabaseHelper extends SQLiteOpenHelper implements UserRepo {
     public static final String ID= "ID";
     public static final String USERNAME= "username";
     public static final String PASSWORD = "password";
-    public static String getUsername;
 
     public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " ( "
             + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -23,10 +22,6 @@ public class DatabaseHelper extends SQLiteOpenHelper implements UserRepo {
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null , 1);
-    }
-
-    public static String getUsername(){
-        return getUsername;
     }
 
     @Override

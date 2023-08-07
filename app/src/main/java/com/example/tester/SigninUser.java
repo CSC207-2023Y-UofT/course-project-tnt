@@ -29,7 +29,6 @@ public class SigninUser extends AppCompatActivity {
             try {
                 signinValidation.validateSignin(userRepo, username, password);
                     Toast.makeText(SigninUser.this, "Sign-in Successful.", Toast.LENGTH_SHORT).show();
-                    DatabaseHelper.getUsername = username;
                     Intent intent = new Intent(getApplicationContext(), HomePageUI.class);
                     startActivity(intent);
             } catch (ValidationException e) {
