@@ -5,12 +5,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 
+/**
+ * The RegisterUser class handles user registration and UI interactions.
+ * It extends AppCompatActivity to provide activity functionality.
+ */
 public class RegisterUser extends AppCompatActivity {
 
+    /**
+     * Initializes UI elements, handles registration validation, and prompts user with appropriate dialogs.
+     *
+     * @param savedInstanceState A Bundle containing the activity's previous state.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,8 +38,9 @@ public class RegisterUser extends AppCompatActivity {
             RegisterValidation registerUserValidation = new RegisterValidation();
 
             try {
+                // Validate user registration inputs
                 registerUserValidation.validateRegister(myDB, username, password, repassword);
-//                Toast.makeText(RegisterUser.this, "Registration Successful.", Toast.LENGTH_SHORT).show();
+                // Show a success prompt
                 Prompt RegistrationPromptSuccess = new CustomPrompt(
                         this,
                         "Welcome!",
@@ -47,7 +56,7 @@ public class RegisterUser extends AppCompatActivity {
                 RegistrationPromptSuccess.show();
 
             } catch (RegistrationException e) {
-//                Toast.makeText(RegisterUser.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                // Show a failure prompt with options to try again or sign in
                 Prompt RegistrationPromptFail = new CustomPrompt(
                         this,
                         "Failed",
@@ -57,11 +66,12 @@ public class RegisterUser extends AppCompatActivity {
                 ) {
                     @Override
                     public void onButton1Clicked() {
-
+                        // Retry registration
                     }
 
                     @Override
                     public void onButton2Clicked() {
+                        // Go to sign-in page
                         Intent intent = new Intent(getApplicationContext(), SigninUser.class);
                         startActivity(intent);
                     }
