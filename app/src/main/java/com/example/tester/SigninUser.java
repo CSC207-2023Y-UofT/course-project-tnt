@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.webkit.WebStorage;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,12 +29,50 @@ public class SigninUser extends AppCompatActivity {
 
             try {
                 signinValidation.validateSignin(userRepo, username, password);
+
                     Toast.makeText(SigninUser.this, "Sign-in Successful.", Toast.LENGTH_SHORT).show();
                     DatabaseHelper.getUsername = username;
                     Intent intent = new Intent(getApplicationContext(), HomePageUI.class);
                     startActivity(intent);
+
+//                    Toast.makeText(SigninUser.this, "Sign-in Successful.", Toast.LENGTH_SHORT).show();
+//                    Intent intent = new Intent(getApplicationContext(), HomePageUI.class);
+//                    startActivity(intent);
+                Prompt SigninPromptSuccess = new CustomPrompt(
+                        this,
+                        "Success",
+                        "Sign-in Successful!",
+                        "PROCEED TO TIMER"
+                ) {
+                    @Override
+                    public void onButton1Clicked() {
+                        Intent intent = new Intent(getApplicationContext(), HomePageUI.class);
+                        startActivity(intent);
+                    }
+                };
+                SigninPromptSuccess.show();
+
             } catch (ValidationException e) {
-                Toast.makeText(SigninUser.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                Prompt SigninPromptFail = new CustomPrompt(
+                        this,
+                        "Failed",
+                        e.getMessage(),
+                        "TRY AGAIN",
+                        "REGISTER"
+                ) {
+                    @Override
+                    public void onButton1Clicked() {
+
+                    }
+
+                    @Override
+                    public void onButton2Clicked() {
+                        Intent intent = new Intent(getApplicationContext(), RegisterUser.class);
+                        startActivity(intent);
+                    }
+                };
+//                Toast.makeText(SigninUser.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                SigninPromptFail.show();
             }
         });
     }

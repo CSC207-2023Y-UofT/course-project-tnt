@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -15,6 +17,8 @@
         <activity android:name=".RegisterUser" />
         <activity android:name=".SigninUser" />
         <activity android:name=".HomePageUI" />
+        <activity android:name=".PomodoroTimer"
+            android:exported="true"/>
         <activity android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -24,5 +28,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>

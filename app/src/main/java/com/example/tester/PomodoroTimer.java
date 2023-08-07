@@ -1,16 +1,20 @@
 package com.example.tester;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-import com.example.tester.R;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
-public class PomodoroTimer extends AppCompatActivity {
+public class PomodoroTimer extends Fragment {
 
     private TextView timerTextView;
     private Button startPauseButton;
@@ -20,15 +24,36 @@ public class PomodoroTimer extends AppCompatActivity {
     private long timeLeftInMillis;
     private static final long WORK_DURATION = 25 * 60 * 1000;
     private static final long BREAK_DURATION = 5 * 60 * 1000;
+    private int cycleCount = 0;
+    private static final int MAX_CYCLES = 1;
+    private VibratorHelper vibratorHelper;
+
+    Prompt TimerPrompt = new CustomPrompt(
+            getContext(),
+            "Good Job!",
+            "Do you want to continue working?",
+            "YES (START TIMER)",
+            "NO (RESET TIMER)"
+    ) {
+        @Override
+        public void onButton1Clicked() {
+            startTimer(timeLeftInMillis > 0 ? timeLeftInMillis : WORK_DURATION);
+        }
+
+        @Override
+        public void onButton2Clicked() {
+            resetTimer();
+        }
+    };
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_timer);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_timer, container, false);
 
-        timerTextView = findViewById(R.id.timerTextView);
-        startPauseButton = findViewById(R.id.startPauseButton);
-        resetButton = findViewById(R.id.resetButton);
+        timerTextView = rootView.findViewById(R.id.timerTextView);
+        startPauseButton = rootView.findViewById(R.id.startPauseButton);
+        resetButton = rootView.findViewById(R.id.resetButton);
 
         startPauseButton.setOnClickListener(v -> {
             if (isTimerRunning) {
@@ -39,6 +64,10 @@ public class PomodoroTimer extends AppCompatActivity {
         });
 
         resetButton.setOnClickListener(v -> resetTimer());
+
+        vibratorHelper = new VibratorHelper(requireContext());
+        
+        return rootView;
     }
 
     private void startTimer(long duration) {
@@ -53,11 +82,15 @@ public class PomodoroTimer extends AppCompatActivity {
             public void onFinish() {
                 if (duration == WORK_DURATION) {
                     updateTimerText(BREAK_DURATION);
-                    startTimer(BREAK_DURATION);
+                    vibratorHelper.vibrate(1000);
                 } else {
-                    updateTimerText(WORK_DURATION);
-                    resetButton.setVisibility(View.VISIBLE);
-                    startPauseButton.setText("Start");
+                    cycleCount++;
+                    if (cycleCount < MAX_CYCLES) {
+                        updateTimerText(WORK_DURATION);
+                        vibratorHelper.vibrate(1000);
+                    } else {
+                        TimerPrompt.show();
+                    }
                 }
             }
         }.start();
@@ -90,7 +123,7 @@ public class PomodoroTimer extends AppCompatActivity {
     }
 
     @Override
-    protected void onStop() {
+    public void onStop() {
         super.onStop();
         if (timer != null) {
             timer.cancel();
