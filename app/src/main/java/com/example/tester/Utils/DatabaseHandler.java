@@ -6,8 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-//import com.example.tester.Model.TaskModel;
-
 import com.example.tester.Model.TaskModel;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -88,7 +86,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public HashMap<Integer, TaskModel> getTaskDict(String username) {
         String result = null;
         SQLiteDatabase MyDatabase = this.getWritableDatabase();
-        Cursor cur = null;
+        Cursor cur;
         String strquery = "SELECT * FROM " + TASK_TABLE + " WHERE " + USERNAME + " = " + username + "'";
         cur = MyDatabase.rawQuery(strquery,null);
         if(cur != null&&cur.moveToFirst()) {
@@ -138,6 +136,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         ContentValues cv = new ContentValues();
         // Get the TaskModel at the position id, update its status
         TaskModel task = taskList.get(id);
+        assert task != null;
         task.setStatus(status);
         //Put the task into the map, then put the map into the database
         taskList.put(id, task);
@@ -151,6 +150,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         ContentValues cv = new ContentValues();
         // Get the TaskModel at the position id, update its description
         TaskModel task = taskList.get(id);
+        assert task != null;
         task.setTask(description);
         //Put the task into the map, then put the map into the database
         taskList.put(id, task);
@@ -185,7 +185,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 }
 
 // Get TASK_DICT by user
-/**    public List<TaskModel> getAllTasks(){
+/*    public List<TaskModel> getAllTasks(){
  List<TaskModel> taskList = new ArrayList<>();
  Cursor cur = null;
  db.beginTransaction();
