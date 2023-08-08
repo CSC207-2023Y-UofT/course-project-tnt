@@ -24,7 +24,6 @@ import com.example.tester.Model.TaskModel;
 import com.example.tester.Utils.DatabaseHandler;
 
 import java.util.Objects;
-// import com.example.tester.Utils.DatabaseHelper;
 
 /**
  * A BottomSheetDialogFragment for adding or updating tasks.
@@ -121,12 +120,12 @@ public class AddTaskUseCase extends BottomSheetDialogFragment {
         });
     }
 
-    @Override
-    public void onDismiss(@NonNull DialogInterface dialog){
-        Activity activity = getActivity();
-        if(activity instanceof DialogCloseListener)
-            ((DialogCloseListener)activity).handleDialogClose(dialog);
-    }
+    //@Override
+    //public void onDismiss(@NonNull DialogInterface dialog){
+    //    Activity activity = getActivity();
+    //    if(activity instanceof DialogCloseListener)
+    //        ((DialogCloseListener)activity).handleDialogClose(dialog);
+    //}
 
     /**
      * Gets the EditText view for the new task text.
