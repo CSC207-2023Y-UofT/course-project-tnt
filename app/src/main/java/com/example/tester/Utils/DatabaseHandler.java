@@ -111,6 +111,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     private static HashMap<Integer, TaskModel> retrieveTasks(String jsonString) {
+        if (jsonString == null || jsonString.isEmpty()) {
+            return new HashMap<>(); // Return an empty map if jsonString is null or empty
+        }
+
         ObjectMapper objectMapper = new ObjectMapper();
 
         try {
@@ -124,7 +128,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             return map;
         } catch (IOException e) {
             e.printStackTrace();
-            return new HashMap<>(); // Return an empty dictionary in case of parsing error
+            return new HashMap<>(); // Return an empty map in case of parsing error
         }
     }
 
