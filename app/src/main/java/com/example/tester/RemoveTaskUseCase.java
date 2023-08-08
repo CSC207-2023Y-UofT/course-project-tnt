@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tester.Adapters.TaskAdapter;
-import net.penguincoders.doit.R;
 
 /**
  * A custom ItemTouchHelper.SimpleCallback to handle swipe gestures for removing tasks or editing tasks.

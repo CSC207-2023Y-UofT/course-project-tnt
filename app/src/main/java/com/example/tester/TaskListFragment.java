@@ -1,6 +1,5 @@
 package com.example.tester;
 
-// import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,8 +15,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import android.content.Context;
 
-import net.penguincoders.doit.R;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import com.example.tester.Adapters.TaskAdapter;
@@ -26,7 +23,6 @@ import com.example.tester.Utils.DatabaseHandler;
 
 import java.util.Collections;
 import java.util.List;
-// import java.util.Objects;
 
 /**
  * A Fragment that displays the list of tasks.

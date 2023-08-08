@@ -14,10 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.tester.AddTaskUseCase;
 import com.example.tester.TaskListFragment;
 import com.example.tester.Model.TaskModel;
-import net.penguincoders.doit.R;
 import com.example.tester.Utils.DatabaseHandler;
 
 import java.util.List;
+import com.example.tester.R;
 
 /**
  * Adapter class for the RecyclerView used to display tasks in the TaskListFragment.
@@ -42,8 +42,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.task_layout, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.task_layout, parent, false);
         return new ViewHolder(itemView);
     }
 

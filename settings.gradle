@@ -10,8 +10,7 @@ pluginManagement {
     repositories {
         google()
         mavenCentral()
-        maven { url 'https://jitpack.io' }
     }
 }*/
-rootProject.name = "3-task-list"
+rootProject.name = "tester"
 include ':app'

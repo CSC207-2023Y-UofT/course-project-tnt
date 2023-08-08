@@ -2,7 +2,6 @@ package com.example.tester;
 
 import android.app.Activity;
 import android.content.DialogInterface;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
@@ -24,7 +23,6 @@ import com.example.tester.Model.TaskModel;
 import com.example.tester.Utils.DatabaseHandler;
 
 import java.util.Objects;
-import net.penguincoders.doit.R;
 // import com.example.tester.DatabaseHelper;
 
 /**
@@ -36,7 +34,6 @@ public class AddTaskUseCase extends BottomSheetDialogFragment {
     private EditText newTaskText;
     private Button newTaskSaveButton;
     private DatabaseHandler db;
-    private DialogCloseListener dialogCloseListener;
 
     /**
      * Creates a new instance of AddTaskUseCase.
@@ -50,7 +47,7 @@ public class AddTaskUseCase extends BottomSheetDialogFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setStyle(STYLE_NORMAL, R.style.DialogStyle);
+        setStyle(STYLE_NORMAL, R.style.Base_Theme_Tester);
     }
 
     @Nullable
@@ -147,6 +144,5 @@ public class AddTaskUseCase extends BottomSheetDialogFragment {
      * @param listener The DialogCloseListener instance.
      */
     public void setDialogCloseListener(DialogCloseListener listener) {
-        this.dialogCloseListener = listener;
     }
 }

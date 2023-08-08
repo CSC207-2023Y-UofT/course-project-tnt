@@ -1,12 +1,15 @@
-apply plugin: 'com.android.application'
+plugins {
+    id 'com.android.application'
+}
 
 android {
+    namespace 'com.example.tester'
     compileSdk 34
 
     defaultConfig {
-        applicationId "net.penguincoders.doit"
-        minSdkVersion 23
-        targetSdkVersion 34
+        applicationId "com.example.tester"
+        minSdk 24
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -19,7 +22,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    namespace 'net.penguincoders.doit'
+    namespace 'com.example.tester'
     buildToolsVersion '34.0.0'
 }
 

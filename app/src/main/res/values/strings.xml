@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">Task List</string>
+    <string name="app_name">Pomodoro TMT</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="registration_success">Success</string>
     <string name="save">Save</string>
     <string name="new_task">New Task</string>
     <string name="tasks">Tasks</string>
