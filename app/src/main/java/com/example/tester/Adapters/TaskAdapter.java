@@ -16,6 +16,7 @@ import com.example.tester.TaskListFragment;
 import com.example.tester.Model.TaskModel;
 import com.example.tester.Utils.DatabaseHandler;
 
+import java.util.Collections;
 import java.util.List;
 import com.example.tester.R;
 
@@ -68,7 +69,11 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return taskList.size();
+        if (taskList != null) {
+            return taskList.size();
+        } else {
+            return 0;
+        }
     }
 
     /**
