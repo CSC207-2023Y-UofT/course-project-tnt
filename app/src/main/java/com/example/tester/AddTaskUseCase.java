@@ -114,9 +114,7 @@ public class AddTaskUseCase extends BottomSheetDialogFragment {
                 TaskModel task = new TaskModel();
                 task.setTask(text);
                 task.setStatus(0);
-                String username = DatabaseHelper.getUsername();
-                // db.insertTask(task);
-                db.insertTask(username, task);
+                db.insertTask(db.getTaskDict(DatabaseHelper.getUsername()).size(), task);
             }
             dismiss();
         });

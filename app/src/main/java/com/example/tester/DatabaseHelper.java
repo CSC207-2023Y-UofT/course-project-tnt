@@ -1,11 +1,14 @@
 package com.example.tester;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import android.content.SharedPreferences;
 
 public class DatabaseHelper extends SQLiteOpenHelper implements UserRepo {
 
@@ -20,8 +23,15 @@ public class DatabaseHelper extends SQLiteOpenHelper implements UserRepo {
             + USERNAME + " TEXT, "
             + PASSWORD + " TEXT)";
 
+    private static final String SHARED_PREFS_NAME = "user_prefs";
+    private static final String KEY_LOGGED_IN_USERNAME = "logged_in_username";
+    @SuppressLint("StaticFieldLeak")
+    private static Context context;
+
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null , 1);
+
+        DatabaseHelper.context = context;
     }
 
     @Override
@@ -77,5 +87,11 @@ public class DatabaseHelper extends SQLiteOpenHelper implements UserRepo {
         int count = cursor.getCount();
         cursor.close();
         return count > 0;
+    }
+
+    // Get the logged-in username from shared preferences
+    public static String getUsername() {
+        SharedPreferences prefs = context.getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE);
+        return prefs.getString(KEY_LOGGED_IN_USERNAME, "");
     }
 }
