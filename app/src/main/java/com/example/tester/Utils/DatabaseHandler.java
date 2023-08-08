@@ -144,7 +144,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         HashMap<Integer, TaskModel> taskList = getTaskDict(USERNAME);
         taskList.put(taskNumber, task);
-        contentValues.put("taskList", String.valueOf(taskList));
+        contentValues.put(TASK_DICT, String.valueOf(taskList)); // Use "task_dict" as the column name
         long result = MyDatabase.update(TASK_TABLE, contentValues, "username = ?", new String[]{USERNAME});
 
         return result != 1;
