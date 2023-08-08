@@ -62,9 +62,10 @@ public class TaskListFragment extends Fragment implements DialogCloseListener{
 
         // Retrieve tasks from the database and display them in reverse order (newest first)
         taskList = db.getAllTasks();
-        Collections.reverse(taskList);
-
-        tasksAdapter.setTasks(taskList);
+        if (taskList != null) {
+            Collections.reverse(taskList);
+            tasksAdapter.setTasks(taskList);
+        }
 
         // Open the AddTaskUseCase dialog when the FloatingActionButton is clicked
         fab.setOnClickListener(v -> AddTaskUseCase.newInstance().show(requireActivity().getSupportFragmentManager(), AddTaskUseCase.TAG));

@@ -1,4 +1,4 @@
-package com.example.tester;
+package com.example.tester.Utils;
 
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
@@ -9,6 +9,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import android.content.SharedPreferences;
+
+import com.example.tester.UserRepo;
 
 public class DatabaseHelper extends SQLiteOpenHelper implements UserRepo {
 

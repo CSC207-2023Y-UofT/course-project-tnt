@@ -5,8 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.tester.Utils.DatabaseHelper;
 import com.google.android.material.button.MaterialButton;
 
 public class RegisterUser extends AppCompatActivity {
