@@ -2,10 +2,7 @@ package com.example.tester;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
+
 
 public abstract class Prompt {
     protected Context context;

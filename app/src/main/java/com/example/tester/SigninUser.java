@@ -4,16 +4,25 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.webkit.WebStorage;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 
+/**
+ * The SigninUser class handles user sign-in functionality.
+ * It allows users to input their credentials and attempts to sign them in.
+ * Depending on the outcome, it displays prompts and navigates to appropriate screens.
+ */
 public class SigninUser extends AppCompatActivity {
     UserRepo userRepo = new DatabaseHelper(this);
     SigninValidation signinValidation= new SigninValidation();
 
+    /**
+     * Called when the activity is starting.
+     * Initializes the UI and sets up the sign-in button click listener.
+     *
+     * @param savedInstanceState The saved state of the activity, if available.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,14 +39,9 @@ public class SigninUser extends AppCompatActivity {
             try {
                 signinValidation.validateSignin(userRepo, username, password);
 
-                    Toast.makeText(SigninUser.this, "Sign-in Successful.", Toast.LENGTH_SHORT).show();
-                    DatabaseHelper.getUsername = username;
-                    Intent intent = new Intent(getApplicationContext(), HomePageUI.class);
-                    startActivity(intent);
+                DatabaseHelper.getUsername = username;
 
-//                    Toast.makeText(SigninUser.this, "Sign-in Successful.", Toast.LENGTH_SHORT).show();
-//                    Intent intent = new Intent(getApplicationContext(), HomePageUI.class);
-//                    startActivity(intent);
+                // Display success prompt and navigate to the timer screen
                 Prompt SigninPromptSuccess = new CustomPrompt(
                         this,
                         "Success",
@@ -53,6 +57,7 @@ public class SigninUser extends AppCompatActivity {
                 SigninPromptSuccess.show();
 
             } catch (ValidationException e) {
+                // Display error prompt and provide options to retry or register
                 Prompt SigninPromptFail = new CustomPrompt(
                         this,
                         "Failed",
@@ -62,16 +67,15 @@ public class SigninUser extends AppCompatActivity {
                 ) {
                     @Override
                     public void onButton1Clicked() {
-
                     }
 
                     @Override
                     public void onButton2Clicked() {
+                        // Opens the registration screen when the "REGISTER" button is clicked.
                         Intent intent = new Intent(getApplicationContext(), RegisterUser.class);
                         startActivity(intent);
                     }
                 };
-//                Toast.makeText(SigninUser.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 SigninPromptFail.show();
             }
         });

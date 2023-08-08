@@ -8,17 +8,27 @@ import static org.junit.Assert.fail;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+/**
+ * This class contains unit tests for the RegisterValidation class.
+ * It uses Mockito to mock the UserRepo interface and simulate database operations.
+ */
 public class RegisterValidationTest {
-
     private UserRepo mockDatabaseHelper;
     private RegisterValidation registerValidation;
 
+    /**
+     * Sets up the necessary mock objects and instances for testing.
+     */
     @Before
     public void setUp() {
         mockDatabaseHelper = new MockDatabaseOperations();
         registerValidation = new RegisterValidation();
     }
 
+    /**
+     * Tests the successful registration scenario where the provided username does not exist
+     * and the registration operation is expected to succeed.
+     */
     @Test
     public void testValidateRegister_Success() {
 
@@ -36,6 +46,9 @@ public class RegisterValidationTest {
         }
     }
 
+    /**
+     * Tests the scenario where the provided username already exists, triggering a RegistrationException.
+     */
     @Test(expected = Exception.class)
     public void testValidateRegisterUser_UsernameExists() throws RegistrationException {
         registerValidation.validateRegister(mockDatabaseHelper, "existinguser", "testpassword", "tesetpassword");
@@ -46,6 +59,9 @@ public class RegisterValidationTest {
         }
     }
 
+    /**
+     * Tests the scenario where the provided passwords do not match, triggering a RegistrationException.
+     */
     @Test
     public void testValidateRegisterUser_PasswordNotMatching() {
         try {
@@ -55,6 +71,9 @@ public class RegisterValidationTest {
         }
     }
 
+    /**
+     * Tests the scenario where one of the required fields is empty, triggering a RegistrationException.
+     */
     @Test
     public void testValidateRegisterUser_EmptyFields() {
         try {
@@ -64,6 +83,10 @@ public class RegisterValidationTest {
         }
     }
 
+    /**
+     * Tests the scenario where a database is not provided and UserRepo instance is null, expecting a NullPointerException to be thrown.
+     *
+     */
     @Test
     public void testValidateRegisterUser_NullDatabaseHelper() {
         try {
