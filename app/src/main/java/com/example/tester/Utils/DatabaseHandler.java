@@ -102,12 +102,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String result = null;
         SQLiteDatabase MyDatabase = this.getWritableDatabase();
         Cursor cur;
-        String strquery = "SELECT * FROM " + TASK_TABLE + " WHERE " + USERNAME + " = '" + username + "'";
-        cur = MyDatabase.rawQuery(strquery,null);
-        if(cur != null&&cur.moveToFirst()) {
-            do {
-                result = cur.getString(0);
-            } while(cur.moveToNext());
+        String strquery = "SELECT " + TASK_DICT + " FROM " + TASK_TABLE + " WHERE " + USERNAME + " = '" + username + "'";
+        cur = MyDatabase.rawQuery(strquery, null);
+        if (cur != null && cur.moveToFirst()) {
+            result = cur.getString(cur.getColumnIndexOrThrow(TASK_DICT));
         }
         return retrieveTasks(result);
     }
