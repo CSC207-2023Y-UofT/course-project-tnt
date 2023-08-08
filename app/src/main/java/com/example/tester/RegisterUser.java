@@ -40,6 +40,9 @@ public class RegisterUser extends AppCompatActivity {
             try {
                 // Validate user registration inputs
                 registerUserValidation.validateRegister(myDB, username, password, repassword);
+
+                DatabaseHelper.getUsername = username;
+
                 // Show a success prompt
                 Prompt RegistrationPromptSuccess = new CustomPrompt(
                         this,

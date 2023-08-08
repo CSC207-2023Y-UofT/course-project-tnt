@@ -38,6 +38,9 @@ public class SigninUser extends AppCompatActivity {
 
             try {
                 signinValidation.validateSignin(userRepo, username, password);
+
+                DatabaseHelper.getUsername = username;
+
                 // Display success prompt and navigate to the timer screen
                 Prompt SigninPromptSuccess = new CustomPrompt(
                         this,
@@ -52,6 +55,7 @@ public class SigninUser extends AppCompatActivity {
                     }
                 };
                 SigninPromptSuccess.show();
+
             } catch (ValidationException e) {
                 // Display error prompt and provide options to retry or register
                 Prompt SigninPromptFail = new CustomPrompt(
