@@ -15,12 +15,10 @@ public class CustomPrompt extends Prompt {
 
     @Override
     public void onButton1Clicked() {
+
         Toast.makeText(context, "Button 1 Clicked", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onButton2Clicked() {
-        Toast.makeText(context, "Button 2 Clicked", Toast.LENGTH_SHORT).show();
-    }
-}
 
