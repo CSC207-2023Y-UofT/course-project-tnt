@@ -12,20 +12,29 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tester.AddTaskUseCase;
-import com.example.tester.MainActivity;
+import com.example.tester.TaskListFragment;
 import com.example.tester.Model.TaskModel;
 import net.penguincoders.doit.R;
 import com.example.tester.Utils.DatabaseHandler;
 
 import java.util.List;
 
+/**
+ * Adapter class for the RecyclerView used to display tasks in the TaskListFragment.
+ */
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
 
     private List<TaskModel> taskList;
     private final DatabaseHandler db;
-    private final MainActivity activity;
+    private final TaskListFragment activity;
 
-    public TaskAdapter(DatabaseHandler db, MainActivity activity) {
+    /**
+     * Constructor for the TaskAdapter.
+     *
+     * @param db       The database handler used to interact with the task database.
+     * @param activity The TaskListFragment instance to which this adapter is attached.
+     */
+    public TaskAdapter(DatabaseHandler db, TaskListFragment activity) {
         this.db = db;
         this.activity = activity;
     }
@@ -63,16 +72,31 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         return taskList.size();
     }
 
+    /**
+     * Get the context associated with the TaskListFragment.
+     *
+     * @return The context associated with the TaskListFragment.
+     */
     public Context getContext() {
-        return activity;
+        return activity.requireContext();
     }
 
+    /**
+     * Set the task list and notify the adapter of the data change.
+     *
+     * @param taskList The new task list to be displayed.
+     */
     @SuppressLint("NotifyDataSetChanged")
     public void setTasks(List<TaskModel> taskList) {
         this.taskList = taskList;
         notifyDataSetChanged();
     }
 
+    /**
+     * Delete a task item at the specified position.
+     *
+     * @param position The position of the task item to be deleted.
+     */
     public void deleteItem(int position) {
         TaskModel item = taskList.get(position);
         db.deleteTask(item.getId());
@@ -80,6 +104,11 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         notifyItemRemoved(position);
     }
 
+    /**
+     * Edit a task item at the specified position.
+     *
+     * @param position The position of the task item to be edited.
+     */
     public void editItem(int position) {
         TaskModel item = taskList.get(position);
         Bundle bundle = new Bundle();
@@ -87,15 +116,27 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         bundle.putString("task", item.getTask());
         AddTaskUseCase fragment = new AddTaskUseCase();
         fragment.setArguments(bundle);
-        fragment.show(activity.getSupportFragmentManager(), AddTaskUseCase.TAG);
+        fragment.show(activity.getChildFragmentManager(), AddTaskUseCase.TAG);
     }
 
+    /**
+     * ViewHolder class to hold references to the views for each task item in the RecyclerView.
+     */
     public static class ViewHolder extends RecyclerView.ViewHolder {
         CheckBox task;
 
         ViewHolder(View view) {
             super(view);
             task = view.findViewById(R.id.todoCheckBox);
+        }
+
+        /**
+         * Get the CheckBox view representing the task.
+         *
+         * @return The CheckBox view representing the task.
+         */
+        public CheckBox getTask() {
+            return task;
         }
     }
 }

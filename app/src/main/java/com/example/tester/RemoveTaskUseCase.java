@@ -15,10 +15,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.tester.Adapters.TaskAdapter;
 import net.penguincoders.doit.R;
 
+/**
+ * A custom ItemTouchHelper.SimpleCallback to handle swipe gestures for removing tasks or editing tasks.
+ */
 public class RemoveTaskUseCase extends ItemTouchHelper.SimpleCallback {
 
     private final TaskAdapter adapter;
 
+    /**
+     * Constructor for RemoveTaskUseCase.
+     *
+     * @param adapter The TaskAdapter to be used for handling task removal and editing.
+     */
     public RemoveTaskUseCase(TaskAdapter adapter) {
         super(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
         this.adapter = adapter;
@@ -34,6 +42,7 @@ public class RemoveTaskUseCase extends ItemTouchHelper.SimpleCallback {
     public void onSwiped(@NonNull final RecyclerView.ViewHolder viewHolder, int direction) {
         final int position = viewHolder.getBindingAdapterPosition();
         if (direction == ItemTouchHelper.LEFT) {
+            // Show a confirmation dialog when swiping left (delete action)
             AlertDialog.Builder builder = new AlertDialog.Builder(adapter.getContext());
             builder.setTitle("Delete Task");
             builder.setMessage("Are you sure you want to delete this Task?");
@@ -43,6 +52,7 @@ public class RemoveTaskUseCase extends ItemTouchHelper.SimpleCallback {
             AlertDialog dialog = builder.create();
             dialog.show();
         } else {
+            // Edit the task when swiping right
             adapter.editItem(position);
         }
     }

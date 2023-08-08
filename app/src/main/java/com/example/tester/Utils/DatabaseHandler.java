@@ -14,10 +14,11 @@ import java.util.HashMap;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
 import java.lang.Integer;
 
+/**
+ * Helper class for managing the SQLite database for tasks.
+ */
 public class DatabaseHandler extends SQLiteOpenHelper {
 
     private static final int VERSION = 1;
@@ -42,6 +43,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // Create database with columns: USERNAME, ID, TASK_DICT = {Order: (Task_ID, Task_Name, Status)}
     private SQLiteDatabase db;
 
+    /**
+     * Creates a new instance of the DatabaseHandler class.
+     *
+     * @param context The context of the application.
+     */
     public DatabaseHandler(Context context) {
         super(context, NAME, null, VERSION);
     }
@@ -61,6 +67,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    /**
+     * Opens the database for writing and reading.
+     */
     public void openDatabase() {
         db = this.getWritableDatabase();
     }
@@ -83,6 +92,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 //        return true;
 //    }
 
+    /**
+     * Retrieves the task dictionary for the given username.
+     *
+     * @param username The username of the user.
+     * @return The task dictionary as a HashMap with TaskModel objects.
+     */
     public HashMap<Integer, TaskModel> getTaskDict(String username) {
         String result = null;
         SQLiteDatabase MyDatabase = this.getWritableDatabase();
@@ -115,11 +130,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
     }
 
-    public List<TaskModel> getAllTasks(){
-        return allTasks;
-    }
-
-
+    /**
+     * Inserts a new task into the task dictionary.
+     *
+     * @param taskNumber The number of the task.
+     * @param task       The TaskModel object representing the task.
+     * @return True if the insertion was successful, false otherwise.
+     */
     public boolean insertTask(Integer taskNumber, TaskModel task) {
         SQLiteDatabase MyDatabase = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -145,7 +162,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     // Update Task_Name directly on the task inside TASK_DICT
-    public void updateTask(int id, String description) {
+    public boolean updateTask(int id, String description) {
         HashMap<Integer, TaskModel> taskList = getTaskDict(USERNAME);
         ContentValues cv = new ContentValues();
         // Get the TaskModel at the position id, update its description
@@ -156,16 +173,43 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         taskList.put(id, task);
         cv.put(TASK_DICT, String.valueOf(taskList));
         db.update(TASK_TABLE, cv, "username = ?", new String[]{USERNAME});
+        long result = db.update(TASK_TABLE, cv, "username = ?", new String[]{USERNAME});
+        return result != -1; // Return true if the update was successful, false otherwise
     }
 
-    // Delete task based on Task_ID inside TASK_LIST
-    public void deleteTask(int id){
+    /**
+     * Deletes a task from the task dictionary.
+     *
+     * @param id The ID of the task to be deleted.
+     * @return True if the deletion was successful, false otherwise.
+     */
+    public boolean deleteTask(int id){
         HashMap<Integer, TaskModel> taskList = getTaskDict(USERNAME);
         ContentValues cv = new ContentValues();
         TaskModel task = new TaskModel();
         taskList.put(id, task);
         cv.put(TASK_DICT, String.valueOf(taskList));
         db.update(TASK_TABLE, cv, "username = ?", new String[]{USERNAME});
+        long result = db.update(TASK_TABLE, cv, "username = ?", new String[]{USERNAME});
+        return result != -1; // Return true if the update was successful, false otherwise
+    }
+
+    /**
+     * Retrieves all tasks from the task dictionary.
+     *
+     * @return A list of TaskModel objects representing all tasks.
+     */
+    public List<TaskModel> getAllTasks(){
+        return allTasks;
+    }
+
+    /**
+     * Gets the underlying SQLiteDatabase instance for direct access.
+     *
+     * @return The SQLiteDatabase instance.
+     */
+    public SQLiteDatabase getDB(){
+        return db;
     }
 
 //        if(CheckValueInDB(USERNAME, username)){
