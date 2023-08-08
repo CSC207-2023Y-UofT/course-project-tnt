@@ -68,7 +68,7 @@ public class AddTaskUseCaseTest {
     @Test
     public void testHandleDialogClose() {
         DialogCloseListener mockListener = mock(DialogCloseListener.class);
-        addTaskUseCase.setDialogCloseListener(mockListener);
+        addTaskUseCase.setDialogCloseListener();
 
         addTaskUseCase.onDismiss(mockDialogInterface);
 

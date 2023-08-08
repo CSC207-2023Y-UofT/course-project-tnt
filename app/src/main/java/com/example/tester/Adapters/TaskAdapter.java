@@ -16,7 +16,6 @@ import com.example.tester.TaskListFragment;
 import com.example.tester.Model.TaskModel;
 import com.example.tester.Utils.DatabaseHandler;
 
-import java.util.Collections;
 import java.util.List;
 import com.example.tester.R;
 

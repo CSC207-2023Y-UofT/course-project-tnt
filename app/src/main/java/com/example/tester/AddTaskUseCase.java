@@ -16,6 +16,7 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentManager;
 
 import com.example.tester.Utils.DatabaseHelper;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
@@ -139,8 +140,7 @@ public class AddTaskUseCase extends BottomSheetDialogFragment {
     /**
      * Sets a listener to handle dialog close events.
      *
-     * @param listener The DialogCloseListener instance.
      */
-    public void setDialogCloseListener(DialogCloseListener listener) {
+    public void setDialogCloseListener() {
     }
 }
