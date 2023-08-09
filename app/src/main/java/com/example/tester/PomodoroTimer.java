@@ -20,8 +20,10 @@ public class PomodoroTimer extends Fragment {
     public CountDownTimer timer;
     public boolean isTimerRunning;
     public long timeLeftInMillis;
-    public static final long WORK_DURATION = 25 * 60 * 1000;
-    public static final long BREAK_DURATION = 5 * 60 * 1000;
+    public static final long WORK_DURATION =  10 * 1000;
+    public static final long BREAK_DURATION =  5 * 1000;
+
+    private boolean showPromptOnBreakFinish = false;
 
     public VibratorHelper vibratorHelper;
 
@@ -77,15 +79,24 @@ public class PomodoroTimer extends Fragment {
                 vibratorHelper.vibrate(1000);
                 if (duration == WORK_DURATION) {
                     startTimer(BREAK_DURATION);
-                } else {
-
+                } else if (showPromptOnBreakFinish) {
+                    TimerPrompt.show();
+                    startTimer(WORK_DURATION);
                 }
             }
         }.start();
+
         isTimerRunning = true;
         startPauseButton.setText("Pause");
         resetButton.setVisibility(View.GONE);
+
+        if (duration == WORK_DURATION) {
+            showPromptOnBreakFinish = true;
+        } else {
+            showPromptOnBreakFinish = false;
+        }
     }
+
     private void pauseTimer() {
         timer.cancel();
         isTimerRunning = false;
