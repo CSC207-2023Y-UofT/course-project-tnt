@@ -254,7 +254,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public static String convertHashMapToJson(HashMap<Integer, TaskModel> taskMap) {
-        StringBuilder jsonBuilder = new StringBuilder("{");
+        StringBuilder jsonBuilder = new StringBuilder();
 
         // Iterate over the entries in the HashMap
         boolean firstEntry = true;
@@ -268,6 +268,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             firstEntry = false;
         }
 
+        jsonBuilder.insert(0, "{");
         jsonBuilder.append("}");
         return jsonBuilder.toString();
     }
@@ -279,7 +280,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         // Create a StringBuilder to build the JSON string
         StringBuilder jsonStringBuilder = new StringBuilder();
-        jsonStringBuilder.append("{");
 
         // Remove leading and trailing curly braces from the input string
         hashMapString = hashMapString.trim();
@@ -304,7 +304,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
 
         // Remove the trailing comma and close the JSON object
-        jsonStringBuilder.deleteCharAt(jsonStringBuilder.length() - 1);
+        if (jsonStringBuilder.length() > 0) {
+            jsonStringBuilder.deleteCharAt(jsonStringBuilder.length() - 1);
+        }
+        jsonStringBuilder.insert(0, "{");
         jsonStringBuilder.append("}");
 
         return jsonStringBuilder.toString();
