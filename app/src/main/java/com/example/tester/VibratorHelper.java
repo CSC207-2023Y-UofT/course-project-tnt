@@ -1,3 +1,8 @@
+/**
+ * A helper class which has vibration functions.
+ * This class provides a vibration function which is used in PomodoroTimer.
+ */
+
 package com.example.tester;
 
 import android.content.Context;
@@ -23,4 +28,3 @@ public class VibratorHelper {
         }
     }
 }
-
