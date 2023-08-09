@@ -1,7 +1,11 @@
+/**
+ * A fragment class that implements the Pomodoro Timer functionality.
+ * This class provides a timer for work and break intervals using the Pomodoro Technique.
+ */
+
 package com.example.tester;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
