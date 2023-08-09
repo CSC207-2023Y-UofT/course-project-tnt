@@ -31,25 +31,6 @@ public class PomodoroTimer extends Fragment {
 
     public VibratorHelper vibratorHelper;
 
-    Prompt TimerPrompt = new CustomPrompt(
-            getContext(),
-            "Good Job!",
-            "Do you want to continue working?",
-            "YES (START TIMER)",
-            "NO (RESET TIMER)"
-    ) {
-        @Override
-        public void onButton1Clicked() {
-            startTimer(timeLeftInMillis > 0 ? timeLeftInMillis : WORK_DURATION);
-        }
-
-        @Override
-        public void onButton2Clicked() {
-            resetTimer();
-        }
-    };
-
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -72,6 +53,23 @@ public class PomodoroTimer extends Fragment {
     }
 
     private void startTimer(long duration) {
+        Prompt TimerPrompt = new CustomPrompt(
+                getContext(),
+                "Good Job!",
+                "Do you want to continue working?",
+                "YES (START TIMER)",
+                "NO (RESET TIMER)"
+        ) {
+            @Override
+            public void onButton1Clicked() {
+                startTimer(WORK_DURATION);
+            }
+
+            @Override
+            public void onButton2Clicked() {
+                resetTimer();
+            }
+        };
         timer = new CountDownTimer(duration, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -83,9 +81,8 @@ public class PomodoroTimer extends Fragment {
                 vibratorHelper.vibrate(1000);
                 if (duration == WORK_DURATION) {
                     startTimer(BREAK_DURATION);
-                } else if (showPromptOnBreakFinish) {
+                } else {
                     TimerPrompt.show();
-                    startTimer(WORK_DURATION);
                 }
             }
         }.start();
@@ -111,8 +108,12 @@ public class PomodoroTimer extends Fragment {
         timer.cancel();
         timeLeftInMillis = WORK_DURATION;
         updateTimerText(WORK_DURATION);
+
         startPauseButton.setText("Start");
+        startPauseButton.setVisibility(View.VISIBLE);
         resetButton.setVisibility(View.GONE);
+
+        isTimerRunning = false; // Debug: Ensure the timer is reset
     }
     private void updateTimerText(long millisUntilFinished) {
         int minutes = (int) (millisUntilFinished / 1000) / 60;
