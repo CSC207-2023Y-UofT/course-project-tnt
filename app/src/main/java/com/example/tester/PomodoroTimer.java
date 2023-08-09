@@ -24,8 +24,8 @@ public class PomodoroTimer extends Fragment {
     public CountDownTimer timer;
     public boolean isTimerRunning;
     public long timeLeftInMillis;
-    public static final long WORK_DURATION =  10 * 1000;
-    public static final long BREAK_DURATION =  5 * 1000;
+    public static final long WORK_DURATION = 25 * 60 * 1000;
+    public static final long BREAK_DURATION = 5 * 60 * 1000;
 
     private boolean showPromptOnBreakFinish = false;
 
