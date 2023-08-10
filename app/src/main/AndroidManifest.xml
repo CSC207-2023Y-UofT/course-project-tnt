@@ -19,6 +19,8 @@
         <activity android:name=".HomePageUI" />
         <activity android:name=".PomodoroTimer"
             android:exported="true"/>
+        <activity android:name=".TaskListFragment"
+            android:exported="true"/>
         <activity android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

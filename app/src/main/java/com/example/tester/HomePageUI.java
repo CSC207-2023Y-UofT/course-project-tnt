@@ -1,4 +1,5 @@
 package com.example.tester;
+import com.example.tester.Utils.DatabaseHandler;
 import com.example.tester.databinding.HomepageBinding;
 
 import android.content.Intent;
@@ -52,8 +53,10 @@ public class HomePageUI extends AppCompatActivity {
             if (itemID == R.id.timer) {
                 replaceFragment(new PomodoroTimer());
             } else if (itemID == R.id.tasks) {
-                replaceFragment(new TaskListFragment());
+                Intent intent = new Intent(HomePageUI.this, TaskListFragment.class);
+                startActivity(intent);
             } else if (itemID == R.id.logout) {
+                DatabaseHandler.deleteAllTasks();
                 Intent intent = new Intent(HomePageUI.this, MainActivity.class);
                 startActivity(intent);
             }
