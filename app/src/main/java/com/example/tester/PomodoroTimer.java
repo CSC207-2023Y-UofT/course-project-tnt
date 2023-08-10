@@ -71,6 +71,7 @@ public class PomodoroTimer extends Fragment {
         return rootView;
     }
 
+
     /**
      * Starts the timer with the specified duration.
      * If the timer finishes, it triggers vibration and optionally shows a prompt.
@@ -78,6 +79,7 @@ public class PomodoroTimer extends Fragment {
      * The prompt provides options to continue working or reset the timer.
      */
     public void startTimer(long duration) {
+    
         Prompt TimerPrompt = new CustomPrompt(
                 getContext(),
                 "Good Job!",
@@ -145,7 +147,8 @@ public class PomodoroTimer extends Fragment {
         startPauseButton.setVisibility(View.VISIBLE);
         resetButton.setVisibility(View.GONE);
 
-        isTimerRunning = false;
+
+        isTimerRunning = false; // Debug: Ensure the timer is reset
     }
 
     /**
