@@ -81,10 +81,12 @@ public class TaskListFragment extends AppCompatActivity implements DialogCloseLi
     @SuppressLint("NotifyDataSetChanged")
     @Override
     public void handleDialogClose(DialogInterface dialog){
-        taskList = db.getAllTasks();
-        Collections.reverse(taskList);
-        tasksAdapter.setTasks(taskList);
-        tasksAdapter.notifyDataSetChanged();
+        runOnUiThread(() -> {
+            taskList = db.getAllTasks();
+            Collections.reverse(taskList);
+            tasksAdapter.setTasks(taskList);
+            tasksAdapter.notifyDataSetChanged();
+        });
     }
 
     /**
@@ -93,12 +95,14 @@ public class TaskListFragment extends AppCompatActivity implements DialogCloseLi
      * @param fragment The fragment to replace the current fragment with.
      */
     protected void replaceFragment(Fragment fragment) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frame_layout, fragment);
-        fragmentTransaction.commit();
+        runOnUiThread(() -> {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frame_layout, fragment);
+            fragmentTransaction.commit();
 
-        // Close the current activity
-        finish();
+            // Close the current activity
+            finish();
+        });
     }
 }

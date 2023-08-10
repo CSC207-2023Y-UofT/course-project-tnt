@@ -25,9 +25,6 @@ import org.mockito.MockitoAnnotations;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Unit tests for the TaskAdapter class.
- */
 public class TaskAdapterTest {
 
     private TaskAdapter taskAdapter;
@@ -116,6 +113,13 @@ public class TaskAdapterTest {
         task.setStatus(1);
         mockTodoList.add(task);
         taskAdapter.setTasks(mockTodoList);
+
+        // Create a mock TaskListFragment
+        TaskListFragment mockTaskListFragment = mock(TaskListFragment.class);
+        when(mockTaskListFragment.getSupportFragmentManager()).thenReturn(mockFragmentManager);
+
+        // Use the mockTaskListFragment for setting up the adapter
+        taskAdapter = new TaskAdapter(mockDb, mockTaskListFragment);
 
         taskAdapter.editItem(0);
 

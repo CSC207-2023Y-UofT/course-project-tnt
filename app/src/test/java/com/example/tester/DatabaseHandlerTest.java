@@ -53,7 +53,7 @@ public class DatabaseHandlerTest {
         task.setTask("Sample task");
 
         // Mock the behavior of the SQLiteDatabase insert method
-        doNothing().when(mockDatabase).insert(any(), any(), any(ContentValues.class));
+        doReturn(-1L).when(mockDatabase).insert(any(), any(), any(ContentValues.class));
 
         // Call the method under test
         databaseHandler.insertTask(task);
@@ -114,7 +114,7 @@ public class DatabaseHandlerTest {
         int newStatus = 1;
 
         // Mock the behavior of the SQLiteDatabase update method
-        doNothing().when(mockDatabase).update(any(), any(ContentValues.class), any(), any(String[].class));
+        doReturn(0).when(mockDatabase).update(any(), any(ContentValues.class), any(), any(String[].class));
 
         // Call the method under test
         databaseHandler.updateStatus(taskId, newStatus);
@@ -133,7 +133,7 @@ public class DatabaseHandlerTest {
         String newTaskDescription = "Updated task description";
 
         // Mock the behavior of the SQLiteDatabase update method
-        doNothing().when(mockDatabase).update(any(), any(ContentValues.class), any(), any(String[].class));
+        doReturn(0).when(mockDatabase).update(any(), any(ContentValues.class), any(), any(String[].class));
 
         // Call the method under test
         databaseHandler.updateTask(taskId, newTaskDescription);
@@ -141,7 +141,6 @@ public class DatabaseHandlerTest {
         // Verify that the update method was called on the mockDatabase object
         verify(mockDatabase).update(any(), any(ContentValues.class), any(), any(String[].class));
     }
-
     /**
      * Test case for deleting a task from the database.
      */

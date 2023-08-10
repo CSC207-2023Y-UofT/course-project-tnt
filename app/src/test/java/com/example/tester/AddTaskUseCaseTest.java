@@ -13,7 +13,10 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -73,10 +76,11 @@ public class AddTaskUseCaseTest {
         // Mocking required objects and actions
 
         // Call the method to be tested
-        addTaskUseCase.onCreateView(null, null, null);
-
-        // Call the method to be tested
-        View resultView = addTaskUseCase.onCreateView(null, null, null);
+        View resultView = addTaskUseCase.onCreateView(
+                mock(LayoutInflater.class), // Non-null LayoutInflater
+                mock(ViewGroup.class), // Non-null ViewGroup
+                null // Passing null as the Bundle argument for this test case
+        );
 
         // Assertions and verifications
         assertNotNull(resultView); // Check if the view is not null
@@ -85,6 +89,7 @@ public class AddTaskUseCaseTest {
     @Test
     public void testOnViewCreated() {
         // Mocking required objects and actions
+        when(mockEditText.getText()).thenReturn(mock(Editable.class)); // Mock the Editable
         when(mockEditText.getText().toString()).thenReturn("Sample Task");
         when(mockEditText.getContext()).thenReturn(mockContext);
 

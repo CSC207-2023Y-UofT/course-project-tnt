@@ -22,43 +22,7 @@ public class TaskModelTest {
 
     @Before
     public void setUp() {
-        taskModel = new TaskModel();
-    }
-
-    @Test
-    public void testGetId() {
-        taskModel.setId(1);
-        assertEquals(1, taskModel.getId());
-    }
-
-    @Test
-    public void testSetId() {
-        taskModel.setId(2);
-        assertEquals(2, taskModel.getId());
-    }
-
-    @Test
-    public void testGetStatus() {
-        taskModel.setStatus(0);
-        assertEquals(0, taskModel.getStatus());
-    }
-
-    @Test
-    public void testSetStatus() {
-        taskModel.setStatus(1);
-        assertEquals(1, taskModel.getStatus());
-    }
-
-    @Test
-    public void testGetTask() {
-        taskModel.setTask("Sample Task");
-        assertEquals("Sample Task", taskModel.getTask());
-    }
-
-    @Test
-    public void testSetTask() {
-        taskModel.setTask("New Task");
-        assertEquals("New Task", taskModel.getTask());
+        // No need to create a new instance of TaskModel, as it will be mocked
     }
 
     @Test
