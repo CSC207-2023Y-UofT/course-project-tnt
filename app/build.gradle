@@ -34,7 +34,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     namespace 'com.example.tester'
-    buildToolsVersion '34.0.0'
+    buildToolsVersion '33.0.0'
 }
 
 dependencies {
