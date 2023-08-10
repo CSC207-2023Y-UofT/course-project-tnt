@@ -49,28 +49,6 @@ public class PomodoroTimer extends Fragment {
     public boolean showPromptOnBreakFinish = false;
 
     /**
-     * The custom prompt to display when the timer prompts the user.
-     * The prompt provides options to continue working or reset the timer.
-     */
-    Prompt TimerPrompt = new CustomPrompt(
-            getContext(),
-            "Good Job!",
-            "Do you want to continue working?",
-            "YES (START TIMER)",
-            "NO (RESET TIMER)"
-    ) {
-        @Override
-        public void onButton1Clicked() {
-            startTimer(timeLeftInMillis > 0 ? timeLeftInMillis : WORK_DURATION);
-        }
-
-        @Override
-        public void onButton2Clicked() {
-            resetTimer();
-        }
-    };
-
-    /**
      * Initializes the UI elements and sets up button click listeners. */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -96,8 +74,27 @@ public class PomodoroTimer extends Fragment {
     /**
      * Starts the timer with the specified duration.
      * If the timer finishes, it triggers vibration and optionally shows a prompt.
+     * The custom prompt to display when the timer prompts the user.
+     * The prompt provides options to continue working or reset the timer.
      */
     public void startTimer(long duration) {
+        Prompt TimerPrompt = new CustomPrompt(
+                getContext(),
+                "Good Job!",
+                "Do you want to continue working?",
+                "YES (START TIMER)",
+                "NO (RESET TIMER)"
+        ) {
+            @Override
+            public void onButton1Clicked() {
+                startTimer(WORK_DURATION);
+            }
+
+            @Override
+            public void onButton2Clicked() {
+                resetTimer();
+            }
+        };
         timer = new CountDownTimer(duration, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
