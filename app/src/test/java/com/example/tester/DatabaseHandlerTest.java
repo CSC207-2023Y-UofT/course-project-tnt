@@ -4,8 +4,8 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.tester.Model.TaskModel;
-import com.example.tester.Utils.DatabaseHandler;
+import com.example.tester.entities.TaskModel;
+import com.example.tester.entities.DatabaseHandler;
 
 import org.junit.Before;
 import org.junit.Test;

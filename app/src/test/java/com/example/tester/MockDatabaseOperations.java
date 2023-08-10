@@ -1,5 +1,7 @@
 package com.example.tester;
 
+import com.example.tester.useCase.UserRepo;
+
 /**
  * This class implements the UserRepo interface to provide mock database operations for testing purposes.
  * The methods in this class always return true to simulate successful operations.

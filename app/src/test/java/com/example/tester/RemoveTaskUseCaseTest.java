@@ -14,7 +14,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.tester.Adapters.TaskAdapter;
+import com.example.tester.UI.TaskAdapter;
+import com.example.tester.useCase.RemoveTaskUseCase;
 
 import org.junit.Before;
 import org.junit.Test;

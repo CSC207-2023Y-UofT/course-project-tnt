@@ -23,7 +23,9 @@ import android.widget.EditText;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
-import com.example.tester.Utils.DatabaseHandler;
+import com.example.tester.entities.DatabaseHandler;
+import com.example.tester.useCase.AddTaskUseCase;
+import com.example.tester.util.DialogCloseListener;
 
 import org.junit.Before;
 import org.junit.Test;

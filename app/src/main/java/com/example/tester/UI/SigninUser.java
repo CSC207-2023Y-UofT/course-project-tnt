@@ -1,4 +1,4 @@
-package com.example.tester;
+package com.example.tester.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,7 +6,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.example.tester.Utils.DatabaseHelper;
+import com.example.tester.R;
+import com.example.tester.useCase.SigninValidation;
+import com.example.tester.useCase.UserRepo;
+import com.example.tester.exceptions.ValidationException;
+import com.example.tester.entities.DatabaseHelper;
 import com.google.android.material.button.MaterialButton;
 
 /**

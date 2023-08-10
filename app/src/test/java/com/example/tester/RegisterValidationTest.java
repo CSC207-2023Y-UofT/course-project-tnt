@@ -8,6 +8,10 @@ import static org.junit.Assert.fail;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import com.example.tester.exceptions.RegistrationException;
+import com.example.tester.useCase.RegisterValidation;
+import com.example.tester.useCase.UserRepo;
+
 /**
  * This class contains unit tests for the RegisterValidation class.
  * It uses Mockito to mock the UserRepo interface and simulate database operations.

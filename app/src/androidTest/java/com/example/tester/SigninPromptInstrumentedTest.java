@@ -8,6 +8,8 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.filters.LargeTest;
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner;
 
+import com.example.tester.UI.RegisterUser;
+
 import org.junit.FixMethodOrder;
 import org.junit.Rule;
 import org.junit.Test;
