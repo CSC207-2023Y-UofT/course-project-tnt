@@ -106,9 +106,8 @@ public class PomodoroTimer extends Fragment {
                 vibratorHelper.vibrate(1000);
                 if (duration == WORK_DURATION) {
                     startTimer(BREAK_DURATION);
-                } else if (showPromptOnBreakFinish) {
+                } else {
                     TimerPrompt.show();
-                    startTimer(WORK_DURATION);
                 }
             }
         }.start();
@@ -141,8 +140,12 @@ public class PomodoroTimer extends Fragment {
         timer.cancel();
         timeLeftInMillis = WORK_DURATION;
         updateTimerText(WORK_DURATION);
+
         startPauseButton.setText("Start");
+        startPauseButton.setVisibility(View.VISIBLE);
         resetButton.setVisibility(View.GONE);
+
+        isTimerRunning = false;
     }
 
     /**
