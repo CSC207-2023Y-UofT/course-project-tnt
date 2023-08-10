@@ -19,12 +19,21 @@ import com.example.tester.Utils.DatabaseHandler;
 
 import java.util.List;
 
+/**
+ * Adapter class for managing tasks in a RecyclerView.
+ */
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
 
     private List<TaskModel> todoList;
     private final DatabaseHandler db;
     private final TaskListFragment activity;
 
+    /**
+     * Constructor for the TaskAdapter.
+     *
+     * @param db       The DatabaseHandler instance for managing database operations.
+     * @param activity The TaskListFragment instance that holds this adapter.
+     */
     public TaskAdapter(DatabaseHandler db, TaskListFragment activity) {
         this.db = db;
         this.activity = activity;
@@ -63,6 +72,11 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         return todoList.size();
     }
 
+    /**
+     * Returns the context associated with the adapter's activity.
+     *
+     * @return The context of the activity.
+     */
     public Context getContext() {
         return activity;
     }
@@ -93,7 +107,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
     public static class ViewHolder extends RecyclerView.ViewHolder {
         CheckBox task;
 
-        ViewHolder(View view) {
+        public ViewHolder(View view) {
             super(view);
             task = view.findViewById(R.id.todoCheckBox);
         }

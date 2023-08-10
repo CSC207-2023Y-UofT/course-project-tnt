@@ -11,6 +11,9 @@ import com.example.tester.Model.TaskModel;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A utility class for managing the database operations related to tasks.
+ */
 public class DatabaseHandler extends SQLiteOpenHelper {
 
     private static final int VERSION = 1;
@@ -41,10 +44,45 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    /**
+     * Opens the database for writing.
+     */
     public void openDatabase() {
         db = this.getWritableDatabase();
     }
 
+    /**
+     * Returns the column name for the ID field.
+     *
+     * @return The column name for the ID field.
+     */
+    public static String getID() {
+        return ID;
+    }
+
+    /**
+     * Returns the column name for the TASK field.
+     *
+     * @return The column name for the TASK field.
+     */
+    public static String getTASK() {
+        return TASK;
+    }
+
+    /**
+     * Returns the column name for the STATUS field.
+     *
+     * @return The column name for the STATUS field.
+     */
+    public static String getSTATUS() {
+        return STATUS;
+    }
+
+    /**
+     * Inserts a new task into the database.
+     *
+     * @param task The task to be inserted.
+     */
     public void insertTask(TaskModel task){
         ContentValues cv = new ContentValues();
         cv.put(TASK, task.getTask());
@@ -52,6 +90,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.insert(TODO_TABLE, null, cv);
     }
 
+    /**
+     * Retrieves all tasks from the database.
+     *
+     * @return A list of all tasks in the database.
+     */
     public List<TaskModel> getAllTasks(){
         List<TaskModel> taskList = new ArrayList<>();
         Cursor cur = null;
@@ -79,22 +122,42 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return taskList;
     }
 
+    /**
+     * Updates the status of a task.
+     *
+     * @param id The ID of the task to be updated.
+     * @param status The new status of the task.
+     */
     public void updateStatus(int id, int status){
         ContentValues cv = new ContentValues();
         cv.put(STATUS, status);
         db.update(TODO_TABLE, cv, ID + "= ?", new String[] {String.valueOf(id)});
     }
 
+    /**
+     * Updates the description of a task.
+     *
+     * @param id The ID of the task to be updated.
+     * @param task The new description of the task.
+     */
     public void updateTask(int id, String task) {
         ContentValues cv = new ContentValues();
         cv.put(TASK, task);
         db.update(TODO_TABLE, cv, ID + "= ?", new String[] {String.valueOf(id)});
     }
 
+    /**
+     * Deletes a task from the database.
+     *
+     * @param id The ID of the task to be deleted.
+     */
     public void deleteTask(int id){
         db.delete(TODO_TABLE, ID + "= ?", new String[] {String.valueOf(id)});
     }
 
+    /**
+     * Deletes all tasks from the database.
+     */
     public static void deleteAllTasks() {
         db.delete(TODO_TABLE, null, null);
     }

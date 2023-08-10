@@ -22,6 +22,10 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * The TaskListFragment class represents the main activity for displaying the list of tasks.
+ * This activity handles the task list UI, including adding, editing, and deleting tasks.
+ */
 public class TaskListFragment extends AppCompatActivity implements DialogCloseListener{
 
     private DatabaseHandler db;
@@ -83,7 +87,12 @@ public class TaskListFragment extends AppCompatActivity implements DialogCloseLi
         tasksAdapter.notifyDataSetChanged();
     }
 
-    private void replaceFragment(Fragment fragment) {
+    /**
+     * Replaces the current fragment with the provided fragment and finishes the current activity.
+     *
+     * @param fragment The fragment to replace the current fragment with.
+     */
+    protected void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame_layout, fragment);

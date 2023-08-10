@@ -24,14 +24,22 @@ import com.example.tester.Utils.DatabaseHandler;
 
 import java.util.Objects;
 
+/**
+ * A BottomSheetDialogFragment for adding or updating tasks.
+ */
 public class AddTaskUseCase extends BottomSheetDialogFragment {
 
     public static final String TAG = "ActionBottomDialog";
     private EditText newTaskText;
-    private Button newTaskSaveButton;
+    protected Button newTaskSaveButton;
 
-    private DatabaseHandler db;
+    protected DatabaseHandler db;
 
+    /**
+     * Creates a new instance of AddTaskUseCase.
+     *
+     * @return A new instance of AddTaskUseCase.
+     */
     public static AddTaskUseCase newInstance(){
         return new AddTaskUseCase();
     }

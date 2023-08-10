@@ -14,10 +14,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tester.Adapters.TaskAdapter;
 
+/**
+ * The RemoveTaskUseCase class represents a custom ItemTouchHelper.Callback used for swiping tasks left or right.
+ * It provides the functionality to delete or edit tasks by responding to user swiping actions.
+ */
 public class RemoveTaskUseCase extends ItemTouchHelper.SimpleCallback {
 
     private final TaskAdapter adapter;
 
+    /**
+     * Constructs a new RemoveTaskUseCase instance with the given TaskAdapter.
+     *
+     * @param adapter The TaskAdapter used to handle interactions with tasks.
+     */
     public RemoveTaskUseCase(TaskAdapter adapter) {
         super(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
         this.adapter = adapter;
@@ -46,6 +55,17 @@ public class RemoveTaskUseCase extends ItemTouchHelper.SimpleCallback {
         }
     }
 
+    /**
+     * Draws the background and icon during swipe motion.
+     *
+     * @param c The Canvas on which to draw the visual elements.
+     * @param recyclerView The RecyclerView to which the ViewHolder belongs.
+     * @param viewHolder The ViewHolder for which to draw the view.
+     * @param dX The horizontal displacement caused by user's swipe.
+     * @param dY The vertical displacement caused by user's swipe.
+     * @param actionState The current action state of the ViewHolder.
+     * @param isCurrentlyActive Whether the ViewHolder is currently being swiped.
+     */
     @Override
     public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
