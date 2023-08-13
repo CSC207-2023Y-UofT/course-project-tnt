@@ -1,4 +1,4 @@
-package com.example.tester;
+package com.example.tester.UI;
 
 import android.content.Context;
 import android.widget.Toast;

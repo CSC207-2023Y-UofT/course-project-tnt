@@ -1,4 +1,4 @@
-package com.example.tester;
+package com.example.tester.useCase;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -12,7 +12,8 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.tester.Adapters.TaskAdapter;
+import com.example.tester.R;
+import com.example.tester.UI.TaskAdapter;
 
 /**
  * The RemoveTaskUseCase class represents a custom ItemTouchHelper.Callback used for swiping tasks left or right.

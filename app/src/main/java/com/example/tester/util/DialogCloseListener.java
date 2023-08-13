@@ -1,4 +1,4 @@
-package com.example.tester;
+package com.example.tester.util;
 
 import android.content.DialogInterface;
 

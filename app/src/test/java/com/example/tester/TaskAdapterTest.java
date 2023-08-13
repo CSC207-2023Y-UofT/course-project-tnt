@@ -13,9 +13,10 @@ import android.widget.CheckBox;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.tester.Adapters.TaskAdapter;
-import com.example.tester.Model.TaskModel;
-import com.example.tester.Utils.DatabaseHandler;
+import com.example.tester.UI.TaskAdapter;
+import com.example.tester.entities.TaskModel;
+import com.example.tester.UI.TaskListFragment;
+import com.example.tester.entities.DatabaseHandler;
 
 import org.junit.Before;
 import org.junit.Test;

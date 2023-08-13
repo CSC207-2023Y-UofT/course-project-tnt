@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="#F3ECE7"
-    tools:context=".PomodoroTimer">
+    tools:context=".UI.PomodoroTimer">
 
     <TextView
         android:id="@+id/timerTextView"

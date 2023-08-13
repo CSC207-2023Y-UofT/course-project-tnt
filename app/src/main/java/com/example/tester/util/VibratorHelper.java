@@ -3,7 +3,7 @@
  * This class provides a vibration function which is used in PomodoroTimer.
  */
 
-package com.example.tester;
+package com.example.tester.util;
 
 import android.content.Context;
 import android.os.Build;

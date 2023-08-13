@@ -1,4 +1,4 @@
-package com.example.tester;
+package com.example.tester.useCase;
 
 import android.app.Activity;
 import android.content.DialogInterface;
@@ -17,10 +17,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
+import com.example.tester.util.DialogCloseListener;
+import com.example.tester.R;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
-import com.example.tester.Model.TaskModel;
-import com.example.tester.Utils.DatabaseHandler;
+import com.example.tester.entities.TaskModel;
+import com.example.tester.entities.DatabaseHandler;
 
 import java.util.Objects;
 
@@ -33,7 +35,7 @@ public class AddTaskUseCase extends BottomSheetDialogFragment {
     private EditText newTaskText;
     protected Button newTaskSaveButton;
 
-    protected DatabaseHandler db;
+    public DatabaseHandler db;
 
     /**
      * Creates a new instance of AddTaskUseCase.

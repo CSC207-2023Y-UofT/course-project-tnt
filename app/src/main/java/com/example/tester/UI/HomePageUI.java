@@ -1,5 +1,6 @@
-package com.example.tester;
-import com.example.tester.Utils.DatabaseHandler;
+package com.example.tester.UI;
+import com.example.tester.R;
+import com.example.tester.entities.DatabaseHandler;
 import com.example.tester.databinding.HomepageBinding;
 
 import android.content.Intent;

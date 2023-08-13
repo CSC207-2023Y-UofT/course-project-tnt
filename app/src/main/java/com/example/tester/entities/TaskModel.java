@@ -1,4 +1,4 @@
-package com.example.tester.Model;
+package com.example.tester.entities;
 
 /**
  * A class representing a task item.

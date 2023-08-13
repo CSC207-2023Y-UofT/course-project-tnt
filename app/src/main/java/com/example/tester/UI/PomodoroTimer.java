@@ -1,4 +1,4 @@
-package com.example.tester;
+package com.example.tester.UI;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -12,6 +12,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.example.tester.R;
+import com.example.tester.util.VibratorHelper;
 
 /**
  * A fragment class that implements the Pomodoro Timer functionality.

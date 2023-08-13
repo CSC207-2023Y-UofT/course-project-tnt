@@ -6,6 +6,10 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
+import com.example.tester.exceptions.ValidationException;
+import com.example.tester.useCase.SigninValidation;
+import com.example.tester.useCase.UserRepo;
+
 /**
  * This class contains unit tests for the SigninValidation class.
  * It uses JUnit's assertThrows to validate the exception scenarios and the successful sign-in scenario.

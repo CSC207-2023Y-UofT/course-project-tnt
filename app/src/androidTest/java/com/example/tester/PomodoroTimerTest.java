@@ -12,6 +12,9 @@ import static org.mockito.Mockito.*;
 import android.os.CountDownTimer;
 import android.view.View;
 
+import com.example.tester.UI.PomodoroTimer;
+import com.example.tester.util.VibratorHelper;
+
 /**
  * Unit tests for the {@link PomodoroTimer} class.
  * This class tests the functions and methods in PomodoroTimer.

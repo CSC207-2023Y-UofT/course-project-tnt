@@ -1,4 +1,6 @@
-package com.example.tester;
+package com.example.tester.useCase;
+
+import com.example.tester.exceptions.RegistrationException;
 
 /**
  * The RegisterValidation class handles the validation of user registration inputs.
@@ -9,7 +11,7 @@ public class RegisterValidation {
     /**
      * Default constructor for RegisterValidation.
      */
-    RegisterValidation() {
+    public RegisterValidation() {
     }
 
     /**

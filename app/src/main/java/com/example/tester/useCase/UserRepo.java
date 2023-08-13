@@ -1,4 +1,4 @@
-package com.example.tester;
+package com.example.tester.useCase;
 
 /**
  * Interface for interacting with user database operations.
