@@ -51,6 +51,9 @@ public class PomodoroTimer extends Fragment {
     /** Indicates if the prompt should be shown */
     public boolean showPromptOnBreakFinish = false;
 
+    /** A text view displaying whether it is a work timer or a break timer */
+    public TextView sessionTypeTextView;
+
     /**
      * Initializes the UI elements and sets up button click listeners. */
     @Override
@@ -60,6 +63,8 @@ public class PomodoroTimer extends Fragment {
         timerTextView = rootView.findViewById(R.id.timerTextView);
         startPauseButton = rootView.findViewById(R.id.startPauseButton);
         resetButton = rootView.findViewById(R.id.resetButton);
+        sessionTypeTextView = rootView.findViewById(R.id.sessionTypeTextView);
+
         startPauseButton.setOnClickListener(v -> {
             if (isTimerRunning) {
                 pauseTimer();
@@ -74,7 +79,6 @@ public class PomodoroTimer extends Fragment {
         return rootView;
     }
 
-
     /**
      * Starts the timer with the specified duration.
      * If the timer finishes, it triggers vibration and optionally shows a prompt.
@@ -82,7 +86,6 @@ public class PomodoroTimer extends Fragment {
      * The prompt provides options to continue working or reset the timer.
      */
     public void startTimer(long duration) {
-    
         Prompt TimerPrompt = new CustomPrompt(
                 getContext(),
                 "Good Job!",
@@ -114,6 +117,7 @@ public class PomodoroTimer extends Fragment {
                 } else {
                     TimerPrompt.show();
                 }
+                sessionTypeTextView.setText(duration == WORK_DURATION ? "Keep working" : "Take a break");
             }
         }.start();
 
@@ -126,6 +130,8 @@ public class PomodoroTimer extends Fragment {
         } else {
             showPromptOnBreakFinish = false;
         }
+
+        sessionTypeTextView.setText(showPromptOnBreakFinish ? getString(R.string.session_type_break) : getString(R.string.session_type_work));
     }
 
     /**
@@ -150,8 +156,9 @@ public class PomodoroTimer extends Fragment {
         startPauseButton.setVisibility(View.VISIBLE);
         resetButton.setVisibility(View.GONE);
 
+        isTimerRunning = false;
 
-        isTimerRunning = false; // Debug: Ensure the timer is reset
+        sessionTypeTextView.setText(isTimerRunning ? "Take a break" : "Keep working");
     }
 
     /**
@@ -162,6 +169,10 @@ public class PomodoroTimer extends Fragment {
         int seconds = (int) (millisUntilFinished / 1000) % 60;
         @SuppressLint("DefaultLocale") String timeLeft = String.format("%02d:%02d", minutes, seconds);
         timerTextView.setText(timeLeft);
+
+
+        // Update the sessionTypeTextView based on the timer state
+        sessionTypeTextView.setText(showPromptOnBreakFinish ? "Keep working" : "Take a break");
     }
 
     /**
@@ -176,4 +187,5 @@ public class PomodoroTimer extends Fragment {
         }
     }
 }
+
 
