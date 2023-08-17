@@ -3,7 +3,7 @@ package com.example.tester;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import com.example.tester.Model.TaskModel;
+import com.example.tester.entities.TaskModel;
 
 import org.junit.Before;
 import org.junit.Test;

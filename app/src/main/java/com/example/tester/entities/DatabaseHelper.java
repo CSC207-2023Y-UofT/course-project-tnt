@@ -1,4 +1,4 @@
-package com.example.tester.Utils;
+package com.example.tester.entities;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,7 +7,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.example.tester.UserRepo;
+import com.example.tester.useCase.UserRepo;
 
 public class DatabaseHelper extends SQLiteOpenHelper implements UserRepo {
 

@@ -1,4 +1,4 @@
-package com.example.tester.Adapters;
+package com.example.tester.UI;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -11,11 +11,10 @@ import android.widget.CheckBox;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.tester.AddTaskUseCase;
-import com.example.tester.Model.TaskModel;
+import com.example.tester.useCase.AddTaskUseCase;
+import com.example.tester.entities.TaskModel;
 import com.example.tester.R;
-import com.example.tester.TaskListFragment;
-import com.example.tester.Utils.DatabaseHandler;
+import com.example.tester.entities.DatabaseHandler;
 
 import java.util.List;
 

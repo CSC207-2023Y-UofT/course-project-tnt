@@ -1,10 +1,11 @@
-package com.example.tester;
+package com.example.tester.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.tester.R;
 import com.google.android.material.button.MaterialButton;
 
 /**

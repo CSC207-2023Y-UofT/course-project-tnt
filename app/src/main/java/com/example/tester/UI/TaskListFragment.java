@@ -1,4 +1,4 @@
-package com.example.tester;
+package com.example.tester.UI;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
@@ -13,9 +13,12 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.tester.Adapters.TaskAdapter;
-import com.example.tester.Model.TaskModel;
-import com.example.tester.Utils.DatabaseHandler;
+import com.example.tester.useCase.AddTaskUseCase;
+import com.example.tester.util.DialogCloseListener;
+import com.example.tester.R;
+import com.example.tester.useCase.RemoveTaskUseCase;
+import com.example.tester.entities.TaskModel;
+import com.example.tester.entities.DatabaseHandler;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -26,7 +29,7 @@ import java.util.List;
  * The TaskListFragment class represents the main activity for displaying the list of tasks.
  * This activity handles the task list UI, including adding, editing, and deleting tasks.
  */
-public class TaskListFragment extends AppCompatActivity implements DialogCloseListener{
+public class TaskListFragment extends AppCompatActivity implements DialogCloseListener {
 
     private DatabaseHandler db;
 
@@ -35,7 +38,7 @@ public class TaskListFragment extends AppCompatActivity implements DialogCloseLi
     private List<TaskModel> taskList;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_task_list);
 
@@ -94,7 +97,7 @@ public class TaskListFragment extends AppCompatActivity implements DialogCloseLi
      *
      * @param fragment The fragment to replace the current fragment with.
      */
-    protected void replaceFragment(Fragment fragment) {
+    public void replaceFragment(Fragment fragment) {
         runOnUiThread(() -> {
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

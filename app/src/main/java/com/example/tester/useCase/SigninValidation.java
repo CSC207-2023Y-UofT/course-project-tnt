@@ -1,4 +1,6 @@
-package com.example.tester;
+package com.example.tester.useCase;
+
+import com.example.tester.exceptions.ValidationException;
 
 /**
  * The SigninValidation class provides a method to validate user credentials during the sign-in process.

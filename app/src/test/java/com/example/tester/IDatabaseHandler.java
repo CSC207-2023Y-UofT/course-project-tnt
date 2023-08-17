@@ -1,6 +1,6 @@
 package com.example.tester;
 
-import com.example.tester.Model.TaskModel;
+import com.example.tester.entities.TaskModel;
 
 import java.util.List;
 

@@ -8,4 +8,7 @@
     <string name="tasks">Tasks</string>
     <string name="add_task">Add Task</string>
     <string name="task_name">Task Name</string>
+    <string name="session_type_default">Session Type</string>
+    <string name="session_type_work">Keep working</string>
+    <string name="session_type_break">Take a break</string>
 </resources>

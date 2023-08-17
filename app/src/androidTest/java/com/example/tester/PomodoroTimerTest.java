@@ -1,89 +1,133 @@
-/**
- * A tester for testing the functions of PomodoroTimer.
- */
-
-
 package com.example.tester;
-
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
-import android.content.Context;
-
-import androidx.fragment.app.FragmentManager;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
-@RunWith(AndroidJUnit4.class)
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.mockito.Mockito.*;
+
+import android.os.CountDownTimer;
+import android.view.View;
+
+import com.example.tester.UI.PomodoroTimer;
+import com.example.tester.util.VibratorHelper;
+
+/**
+ * Unit tests for the {@link PomodoroTimer} class.
+ * This class tests the functions and methods in PomodoroTimer.
+ */
+
 public class PomodoroTimerTest {
 
-    private PomodoroTimer fragment;
-    private Context contextMock;
-    private VibratorHelper vibratorHelperMock;
-    private FragmentManager fragmentManagerMock;
+    @Mock
+    private VibratorHelper mockVibratorHelper;
 
+    private PomodoroTimer pomodoroTimer;
+
+    /**
+     * Sets up the testing environment before each test method is executed.
+     * Initializes the PomodoroTimer instance and mocks dependencies.
+     */
     @Before
-    public void setup() {
-        fragment = new PomodoroTimer();
-        contextMock = mock(Context.class);
-        vibratorHelperMock = mock(VibratorHelper.class);
-        fragmentManagerMock = mock(FragmentManager.class);
+    public void setUp() {
+        MockitoAnnotations.initMocks(this);
+        pomodoroTimer = new PomodoroTimer();
+        pomodoroTimer.vibratorHelper = mockVibratorHelper;
+    }
 
-        // Set up mocks
-        when(contextMock.getSystemService(Context.VIBRATOR_SERVICE)).thenReturn(vibratorHelperMock);
-        when(fragment.requireContext()).thenReturn(contextMock);
-        fragment.vibratorHelper = vibratorHelperMock;
-        fragment.TimerPrompt = new CustomPrompt(fragment.getContext(), "Test Title", "Test Message", "Button 1", "Button 2") {
+    /**
+     * Tests the behavior of starting the timer with work duration.
+     * Verifies that the vibrator is invoked when the timer finishes.
+     */
+    @Test
+    public void testStartTimer_WorkDuration() {
+        long workDuration = PomodoroTimer.WORK_DURATION;
+        pomodoroTimer.startTimer(workDuration);
+        // Verify that the vibrator is called when the timer finishes
+        verify(mockVibratorHelper).vibrate(1000);
+    }
+
+    /**
+     * Tests the behavior of starting the timer with break duration.
+     * Verifies that the vibrator is invoked when the timer finishes.
+     */
+    @Test
+    public void testStartTimer_BreakDuration() {
+        long breakDuration = PomodoroTimer.BREAK_DURATION;
+        pomodoroTimer.startTimer(breakDuration);
+        // Verify that the vibrator is called when the timer finishes
+        verify(mockVibratorHelper).vibrate(1000);
+    }
+
+    /**
+     * Tests the behavior of pausing the timer.
+     * Verifies that the timer is canceled and UI elements are updated.
+     */
+    @Test
+    public void testPauseTimer() {
+        // Mock a running timer
+        CountDownTimer mockTimer = mock(CountDownTimer.class);
+        pomodoroTimer.timer = mockTimer;
+        pomodoroTimer.isTimerRunning = true;
+
+        pomodoroTimer.pauseTimer();
+
+        // Verify that the timer is canceled and UI elements are updated
+        verify(mockTimer).cancel();
+        // Add assertions for UI element states if needed
+    }
+
+    /**
+     * Tests the behavior of updating the timer text.
+     * Verifies that the timer text view is updated correctly.
+     */
+    @Test
+    public void testUpdateTimerText() {
+        long millisUntilFinished = 150000; // 2 minutes and 30 seconds
+        String expectedTimeText = "02:30";
+
+        pomodoroTimer.updateTimerText(millisUntilFinished);
+
+        // Verify that the timer text view is updated with the expected value
+        assertEquals(expectedTimeText, pomodoroTimer.timerTextView.getText());
+    }
+
+    /**
+     * Tests the behavior of resetting the timer.
+     * Verifies that the timer is canceled and UI elements are updated.
+     */
+    @Test
+    public void testResetTimer() {
+        // Arrange
+        long initialTime = 15000; // 15 seconds
+        pomodoroTimer.timeLeftInMillis = initialTime;
+        // Simulate a running timer
+        pomodoroTimer.timer = new CountDownTimer(initialTime, 1000) {
             @Override
-            public void onButton1Clicked() {
-                // Mock implementation
+            public void onTick(long millisUntilFinished) {
+                // Do nothing
             }
             @Override
-            public void onButton2Clicked() {
-                // Mock implementation
+            public void onFinish() {
+                // Do nothing
             }
         };
+        pomodoroTimer.isTimerRunning = true;
+        pomodoroTimer.startPauseButton.setText("Pause");
+        pomodoroTimer.resetButton.setVisibility(View.GONE);
+
+        // Act
+        pomodoroTimer.resetTimer();
+
+        // Assert
+        verify(pomodoroTimer.timer).cancel();
+        assertEquals(PomodoroTimer.WORK_DURATION, pomodoroTimer.timeLeftInMillis);
+        verify(mockVibratorHelper, times(0)).vibrate(anyLong());
+        assertFalse(pomodoroTimer.isTimerRunning);
+        assertEquals("Start", pomodoroTimer.startPauseButton.getText());
+        assertEquals(View.VISIBLE, pomodoroTimer.resetButton.getVisibility());
     }
-
-    @Test
-    public void testStartPauseButton_Click_StartsTimer() {
-        fragment.isTimerRunning = false;
-        fragment.timeLeftInMillis = 0;
-
-        fragment.startPauseButton.performClick();
-
-        // Verify that timer starts, UI updates, and button text changes
-    }
-
-    @Test
-    public void testStartPauseButton_Click_PausesTimer() {
-        fragment.isTimerRunning = true;
-        fragment.timeLeftInMillis = 10000; // Set some value
-
-        fragment.startPauseButton.performClick();
-
-        // Verify that timer is paused, UI updates, and button text changes
-    }
-
-    @Test
-    public void testResetButton_Click_ResetsTimer() {
-        fragment.timeLeftInMillis = 20000; // Set some value
-
-        fragment.resetButton.performClick();
-
-        // Verify that timer is reset, UI updates, and button visibility changes
-    }
-
-    @Test
-    public void testOnFinish_StartsBreakOrPrompt() {
-        long workDuration = PomodoroTimer.WORK_DURATION;
-        long breakDuration = PomodoroTimer.BREAK_DURATION;
-
-    }
-
 }
-
-

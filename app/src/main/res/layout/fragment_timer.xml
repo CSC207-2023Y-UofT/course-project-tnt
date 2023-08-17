@@ -1,18 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F3ECE7">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#F3ECE7"
+    tools:context=".UI.PomodoroTimer">
 
     <TextView
         android:id="@+id/timerTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:textSize="48sp"
         android:text="25:00"
+        android:textSize="48sp"
         android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/sessionTypeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/session_type_default"
+        android:textSize="18sp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="16dp"
+        android:layout_above="@+id/timerTextView"/>
 
     <Button
         android:id="@+id/startPauseButton"
@@ -32,5 +43,5 @@
         android:layout_marginTop="16dp"
         android:layout_centerHorizontal="true"
         android:visibility="invisible"/>
-
 </RelativeLayout>
+

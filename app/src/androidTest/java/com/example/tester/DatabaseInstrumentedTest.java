@@ -8,7 +8,8 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 
-import com.example.tester.Utils.DatabaseHelper;
+import com.example.tester.UI.MainActivity;
+import com.example.tester.entities.DatabaseHelper;
 
 import org.junit.Before;
 import org.junit.Rule;

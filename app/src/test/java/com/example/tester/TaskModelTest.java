@@ -9,7 +9,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
-import com.example.tester.Model.TaskModel;
+import com.example.tester.entities.TaskModel;
 
 /**
  * Unit tests for the TaskModel class.

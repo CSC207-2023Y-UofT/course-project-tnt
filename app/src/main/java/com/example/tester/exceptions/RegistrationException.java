@@ -1,4 +1,4 @@
-package com.example.tester;
+package com.example.tester.exceptions;
 
 /**
  * Custom exception class for registration-related errors.
