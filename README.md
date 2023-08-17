@@ -45,8 +45,6 @@ To get started with the project, you need to clone the repository. Open your ter
 - User Sign-in and Registration: Prompt displays authentication updates, such as errors when user attempts to signin or register, providing guidance on how the user can successfully access the app content.
 - Pomodoro Session Updates: Using the prompts, the user can choose to continue the study session without a break, making the app flexible to individual preferences.
 
-
-
 ## Note on SOLID and CA
 ### User signin and registration:
 - SRP: Separating RegisterValidation and SigninValidation from RegisterUser and SigninUser classes
@@ -79,3 +77,8 @@ To get started with the project, you need to clone the repository. Open your ter
 - Observer Pattern: This can be seen in the timer function, where when the timer finishes a break session, it automatically notifies the UI component via a prompt.
 - Factory Method: Prompt is an abstract class that serves as a "blueprint" for creating Android dialog prompts throughout the application. It has a constructor that takes parameters to initialize the prompt's properties, such as the title, dialog, names of the buttons and their functionalities. The CustomPrompt class, which extends Prompt, acts as a "creator/initializer" that creates instances of CustomPrompt based on the parameters passed to its constructors. Then, CustomPrompt would get called throughout the app with specific parameters according to each use case.
 - Template Method: The Prompt abstract class defines a template method show() that provides a concrete algorithm for displaying the dialog prompt, while leaving specific actions to be taken on button clicks (onButton1Clicked() and onButton2Clicked()) left abstract, allowing subclasses to provide their own implementations.
+
+## Test Coverage
+![image](file:///Users/mariinakim/Desktop/Screenshot%202023-08-16%20at%2010.25.30%20PM.png)
+The test coverage breakdown is as shown. Android Tests including all the instrumented tests that test the UI, database, entities, utils and databinding were unable to be added to the test coverage report.
+This accounts for why these classes have a coverage of 0%.
